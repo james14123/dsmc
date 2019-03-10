@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<head>
 	<style>
 		body{
@@ -45,6 +46,12 @@
 		#beauty{
 			left:45px;
 			top:-39px;
+			
+		}
+		
+		#movie{
+			left:90px;
+			top:-78px;
 			
 		}
 		
@@ -124,7 +131,7 @@
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script> 
+	<script src="https://malsup.github.com/jquery.form.js"></script> 
 	<script>
 		function returngossiping() {  
 			
@@ -137,7 +144,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('http://localhost:8080/gossiping', {}, function(data){
+				$.post('https://submitdemo.herokuapp.com/gossiping', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -158,7 +165,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:8080/post');
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -224,7 +231,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('http://localhost:8080/beauty', {}, function(data){
+				$.post('https://submitdemo.herokuapp.com/beauty', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -245,7 +252,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:8080/post');
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -306,7 +313,96 @@
 		}
 		
 	
+		function returnmovie() {  
+			
+			var myNode = document.getElementById("main");
+			myNode.innerHTML = '';
+			
+			// jquery 表单提交  
+			$("#showbeauty").ajaxSubmit(function(message) {  
+				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
+					//window.location = 'http://127.0.0.1:58153/index.html';
+				console.log("submit");
+				$.post('https://submitdemo.herokuapp.com/movie', {}, function(data){
+					console.log(data);
+					
+					for (i=0;i<data.length;i++){
+						
+					j=-i+data.length-1;
+					
+											
+					var post = document.createElement("div");
+					post.setAttribute('class','post');
+					post.setAttribute('id','post_'+i	);
+				
+					document.getElementById('main').appendChild(post);	
+						
+					var title = document.createElement("div");
+					title.innerHTML = data[j].title;
+					title.setAttribute('class','title');
+										
+					document.getElementById('post_'+i).appendChild(title);	
+						
+					var makelink = document.createElement("form");
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('method','POST');	
+					makelink.setAttribute('id','POSTform_' +i);	
+					makelink.setAttribute('name','name');
+					makelink.setAttribute('value',data[j].link);	
+						
+					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+						
+					makelink.setAttribute('onsubmit', goto);
+						
+					post.appendChild(makelink);			
+					
+					var premore = document.createElement("input");
+					premore.setAttribute('class','premore')
+					premore.setAttribute('type','text');
+					
+					premore.setAttribute('name','name');
+						
+					premore.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(premore);		
+						
+						
+					var more = document.createElement("input");
+					more.setAttribute('class','more')
+					more.setAttribute('type','submit');
+					
+					//more.setAttribute('name','name');
+						
+					more.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(more);		
+						
+					var author = document.createElement("div");
+					author.innerHTML = data[j].author;
+					author.setAttribute('class','author');
+						
+					//document.body.insertBefore(post, currentDiv); 
+					document.getElementById('post_'+i).appendChild(author);	
+						
+					var count = document.createElement("div");
+					count.innerHTML = data[j].count;
+					count.setAttribute('class','count');
+						
+						
+					document.getElementById('post_'+i).appendChild(count);		
+					}
+					
+				
+				});
+			
+			});  
+
 		
+			
+			  
+
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
+		}
 		
 		
 		function returnpost(id){
@@ -352,13 +448,16 @@
 	  
 	  
 	  <div id='boardswitch'>
-		<form action="http://localhost:8080/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
+		<form action="https://submitdemo.herokuapp.com/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
 		 <button type="submit" class="btn" id="gossiping">八卦</button>		
-		 
-		</form>
-		<form action="http://localhost:8080/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
+		 </form>
+		  
+		<form action="https://submitdemo.herokuapp.com/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
 		 <button type="submit" class="btn" id="beauty">表特</button>
-
+		</form>
+		  
+		<form action="https://submitdemo.herokuapp.com/moive" id="showmovie" method="POST" onsubmit="return returnmovie()">
+		 <button type="submit" class="btn" id="movie">電影</button>
 		</form>
 		  
 		<div id='main'>

@@ -151,11 +151,11 @@ app.post('/post',urlencodedParser, (appreq, appres) => {
 
 
 
-app.post('/beauty', (appreq, appres) => {
+app.post('/movie', (appreq, appres) => {
 	
 		var j = request.jar()
 		var cookie = request.cookie('over18=1');
-		var url = 'https://www.ptt.cc/bbs/beauty/index.html';
+		var url = 'https://www.ptt.cc/bbs/movie/index.html';
 		j.setCookie(cookie, url, function (err, cookie){});
 	
 	request({url: url, jar: j}, (err, res, body) => {
@@ -230,6 +230,8 @@ app.post('/beauty', (appreq, appres) => {
 	
 	
 });
+
+
 
 
 const port = process.env.PORT || 3000;
