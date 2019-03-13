@@ -5,53 +5,66 @@
 	<style>
 		body{
 			font-size: 12px;
-			font-family: 微軟正黑體; “Microsoft JhengHei”, sans-serif;
+		
+			font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+
+			
 		}
 		#boardswitch {
-			
+			position: fixed;
 			background-color: aliceblue;
 			width: 800px;
 			height: 40px;
-			margin:0 auto; 
+			left: 50%;
+			margin:0 0 0 -400px;
 			border-radius:5px;
 			margin-top:5px;	
 			padding: 0px;
 			
 		}
+		
+		#nextpage{
+			position: fixed;;
+			background-color: gainsboro;
+			width: 40px;
+			height: 40px;
+			left: 50%;
+			bottom: 10px;
+			margin:0 0 0 -20px;
+			border-radius:5px;
+			padding: 0px;
+		}
+		
 		#main{
 			position: fixed;
-			
+			left: 50%;
+			margin:0 0 0 -400px;
 			background-color:azure;
 			width: 800px;
-			
+			height: 90%;
 			top:55px;
-			height: 1000px;
 			border-radius:5px;
 			overflow-x: auto;
 			padding: 0px;
 		}
 		
 		.btn{
-			position: relative;
 			background-color: skyblue;
 			border-radius:5px;
 			margin:5px;
 			padding: 5px;
-			width: 40px;
-		}
-		
-		#gossiping{
-			
-		}
-		#beauty{
-			left:45px;
-			top:-39px;
 			
 		}
 		
-		#movie{
-			left:90px;
-			top:-78px;
+		#showgossiping{
+			float: left;
+		}
+		#showbeauty{
+			float: left;
+		}
+		
+		#showmovie{
+			float: left;
 			
 		}
 		
@@ -80,10 +93,10 @@
 			font-size: 12px;
 			background-color:yellow;
 			border-radius:100px;
-			float: right;
-			position: relative;
-			top: -59px;
-			right:3px;
+			margin-top: -22px;
+			right: 10px;
+			position: absolute;
+			
 			text-align: center;
 			padding:5px;
 			width: 15px;
@@ -104,7 +117,7 @@
 		#contentpost{
 			position: fixed;
 			width: 800px;
-			height: 500px;
+			height: 80%;
 			overflow-x: auto;
 			background-color: gainsboro;
 			padding: 5px;
@@ -113,15 +126,19 @@
 			margin: -20px 0 0 -400px;
 			border-radius:10px;
 			border-style:solid;
-			border-width: 2px;
-			z-index: 1;
+			border-width:2px;
+			z-index: 2;
 			
 			
 		}
 		
 		#closebtn{
 			position: fixed;
-			right: 50px;
+			left:50%;
+			width: 50px;
+			margin: 0 0 0 320px;
+			z-index: 2;
+			
 		}
 		
 		
@@ -133,6 +150,8 @@
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="https://malsup.github.com/jquery.form.js"></script> 
 	<script>
+		
+		
 		function returngossiping() {  
 			
 			var myNode = document.getElementById("main");
@@ -144,7 +163,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/gossiping', {}, function(data){
+				$.post('http://localhost:3000/gossiping', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -165,7 +184,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -210,11 +229,14 @@
 					count.setAttribute('class','count');
 						
 						
-					document.getElementById('post_'+i).appendChild(count);		
+					title.appendChild(count);		
 					}
-					
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+					console.log("set");
 				
 				});
+				
+				
 			
 			});  
 
@@ -231,7 +253,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/beauty', {}, function(data){
+				$.post('http://localhost:3000/beauty', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -252,7 +274,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -300,7 +322,7 @@
 					document.getElementById('post_'+i).appendChild(count);		
 					}
 					
-				
+					
 				});
 			
 			});  
@@ -319,11 +341,11 @@
 			myNode.innerHTML = '';
 			
 			// jquery 表单提交  
-			$("#showmovies").ajaxSubmit(function(message) {  
+			$("#showmovie").ajaxSubmit(function(message) {  
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/movie', {}, function(data){
+				$.post('http://localhost:3000/movie', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -344,7 +366,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -400,6 +422,95 @@
 		
 			
 			  
+
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
+		}
+		
+			function returnnextpage() {  
+			
+				
+			var myNode = document.getElementById("main");
+			myNode.innerHTML = '';
+			
+			// jquery 表单提交  
+			$("#shownextpage").ajaxSubmit(function(data) {  
+				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
+					//window.location = 'http://127.0.0.1:58153/index.html';
+				console.log("submit");
+				
+					console.log(data);
+					
+					for (i=0;i<data.length;i++){
+						
+					j=-i+data.length-1;
+					
+											
+					var post = document.createElement("div");
+					post.setAttribute('class','post');
+					post.setAttribute('id','post_'+i	);
+				
+					document.getElementById('main').appendChild(post);	
+						
+					var title = document.createElement("div");
+					title.innerHTML = data[j].title;
+					title.setAttribute('class','title');
+										
+					document.getElementById('post_'+i).appendChild(title);	
+						
+					var makelink = document.createElement("form");
+					makelink.setAttribute('action','http://localhost:3000/next');
+					makelink.setAttribute('method','POST');	
+					makelink.setAttribute('id','POSTform_' +i);	
+					makelink.setAttribute('name','name');
+					makelink.setAttribute('value',data[j].link);	
+						
+					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+						
+					makelink.setAttribute('onsubmit', goto);
+						
+					post.appendChild(makelink);			
+					
+					var premore = document.createElement("input");
+					premore.setAttribute('class','premore')
+					premore.setAttribute('type','text');
+					
+					premore.setAttribute('name','name');
+						
+					premore.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(premore);		
+						
+						
+					var more = document.createElement("input");
+					more.setAttribute('class','more')
+					more.setAttribute('type','submit');
+					
+					//more.setAttribute('name','name');
+						
+					more.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(more);		
+						
+					var author = document.createElement("div");
+					author.innerHTML = data[j].author;
+					author.setAttribute('class','author');
+						
+					//document.body.insertBefore(post, currentDiv); 
+					document.getElementById('post_'+i).appendChild(author);	
+						
+					var count = document.createElement("div");
+					count.innerHTML = data[j].count;
+					count.setAttribute('class','count');
+						
+						
+					document.getElementById('post_'+i).appendChild(count);		
+					}
+					
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+				});
+			
+
+		 
 
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
 		}
@@ -448,24 +559,29 @@
 	  
 	  
 	  <div id='boardswitch'>
-		<form action="https://submitdemo.herokuapp.com/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
+		  
+		<form action="http://localhost:3000/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
 		 <button type="submit" class="btn" id="gossiping">八卦</button>		
 		 </form>
 		  
-		<form action="https://submitdemo.herokuapp.com/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
+		<form action="http://localhost:3000/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
 		 <button type="submit" class="btn" id="beauty">表特</button>
 		</form>
 		  
-		<form action="https://submitdemo.herokuapp.com/moive" id="showmovie" method="POST" onsubmit="return returnmovie()">
+		<form action="http://localhost:3000/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
 		 <button type="submit" class="btn" id="movie">電影</button>
 		</form>
-		  
-		<div id='main'>
-		  
-		</div>
 	
-  
+	  </div>  
+		<div id='main'>
+		   
+		</div>
+			
+	  			<form action="http://localhost:3000/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
+					<input type="text" class="btn" id="nextpage" name="name" value='Next'>
+					<input type="submit" class="btn" id="nextpage" >
+				</form>
+	  		
 		  
-	  </div>
   </body>
 </html>
