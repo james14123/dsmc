@@ -125,10 +125,10 @@ app.post('/gossiping', (appreq, appres) => {
 
 
 app.post('/next', (appreq, appres) => {
-	//console.log(appreq.body);
+//	console.log(appreq.body);
 	var j = request.jar()
 		var cookie = request.cookie('over18=1');
-		var url = 'https://www.ptt.cc/bbs/Gossiping/index' + appreq.body.name + '.html';
+		var url = 'https://www.ptt.cc/bbs/' + appreq.body.board +'/index' + appreq.body.name + '.html';
 		j.setCookie(cookie, url, function (err, cookie){});
 	
 	request({url: url, jar: j}, (err, res, body) => {
@@ -294,6 +294,29 @@ app.post('/beauty', (appreq, appres) => {
 
 
 		//console.log(count);
+		let prevLink = '';
+		prev = $('.btn,.wide').map((index, obj) => {
+			if($(obj).text().includes('上頁')) {
+					return {
+					  prevLink: $(obj).attr('href'),
+
+					}
+				}
+			}).get()
+		
+	
+		function getPageNumber() {
+			let prev1 = prev[0].prevLink;
+			if (prev1 === '') return 1;
+			//console.log(prev);
+			if (!/index(\d*)\.html/.test(prev1)) return 'error';
+			let prevPageNumber = /index(\d*)\.html/.exec(prev1)[1];
+			return Number(prevPageNumber) + 1;
+		  }
+		var nowpage = getPageNumber();
+		
+
+		//console.log(count);
 
 		for(i=0;i<list.length;i++){
 
@@ -303,6 +326,7 @@ app.post('/beauty', (appreq, appres) => {
 				date:date[i].date,
 				count: count[i].title, 
 				link: list[i].link,
+				nowpage: nowpage,
 			})
 
 		}
@@ -320,7 +344,7 @@ app.post('/beauty', (appreq, appres) => {
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.post('/post',urlencodedParser, (appreq, appres) => {
-	console.log(appreq.body.name);
+	
 	var j = request.jar()
 	var cookie = request.cookie('over18=1');
 	var url = appreq.body.name;
@@ -412,13 +436,36 @@ app.post('/movie', (appreq, appres) => {
 
 		}).get()
 
-		count = $('.r-ent .nrec').map((index, obj) => {
+			count = $('.r-ent .nrec').map((index, obj) => {
 					return {
 					  title: $(obj).text(),
 
 					}
 				}).get()
 
+
+		//console.log(count);
+		let prevLink = '';
+		prev = $('.btn,.wide').map((index, obj) => {
+			if($(obj).text().includes('上頁')) {
+					return {
+					  prevLink: $(obj).attr('href'),
+
+					}
+				}
+			}).get()
+		
+	
+		function getPageNumber() {
+			let prev1 = prev[0].prevLink;
+			if (prev1 === '') return 1;
+			//console.log(prev);
+			if (!/index(\d*)\.html/.test(prev1)) return 'error';
+			let prevPageNumber = /index(\d*)\.html/.exec(prev1)[1];
+			return Number(prevPageNumber) + 1;
+		  }
+		var nowpage = getPageNumber();
+		
 
 		//console.log(count);
 
@@ -430,6 +477,7 @@ app.post('/movie', (appreq, appres) => {
 				date:date[i].date,
 				count: count[i].title, 
 				link: list[i].link,
+				nowpage: nowpage,
 			})
 
 		}

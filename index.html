@@ -25,8 +25,8 @@
 		
 		#nextpage{
 			position: fixed;;
-			background-color: gainsboro;
-			width: 40px;
+			background-color: ;
+			width: 60px;
 			height: 40px;
 			left: 50%;
 			bottom: 10px;
@@ -154,8 +154,7 @@
 		
 		function returngossiping() {  
 			
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
+			
 			
 			
 			// jquery 表单提交  
@@ -225,12 +224,17 @@
 					document.getElementById('post_'+i).appendChild(author);	
 						
 					var count = document.createElement("div");
+					
 					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
 						
+					count.setAttribute('class','count');
+					if(data[j].count === ""){
+					count.setAttribute('style','visibility:hidden');
+					}	
 						
 					title.appendChild(count);		
 					}
+					document.getElementById('nextboard').setAttribute('value','gossiping');
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
 				
@@ -318,8 +322,15 @@
 					count.innerHTML = data[j].count;
 					count.setAttribute('class','count');
 						
+					
 						
-					document.getElementById('post_'+i).appendChild(count);		
+					title.appendChild(count);			
+					
+					document.getElementById('nextboard').setAttribute('value','beauty');
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+					console.log("set");
+						
+						
 					}
 					
 					
@@ -410,8 +421,14 @@
 					count.innerHTML = data[j].count;
 					count.setAttribute('class','count');
 						
+					
+					title.appendChild(count);		
 						
-					document.getElementById('post_'+i).appendChild(count);		
+						
+					document.getElementById('nextboard').setAttribute('value','movie');
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+					console.log("set");
+						
 					}
 					
 				
@@ -502,8 +519,8 @@
 					count.innerHTML = data[j].count;
 					count.setAttribute('class','count');
 						
-						
-					document.getElementById('post_'+i).appendChild(count);		
+					
+					title.appendChild(count);		
 					}
 					
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
@@ -555,7 +572,7 @@
 		}
 	</script>
 		</head>
-  <body>
+  <body onload="return returngossiping()">
 	  
 	  
 	  <div id='boardswitch'>
@@ -571,15 +588,16 @@
 		<form action="http://localhost:3000/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
 		 <button type="submit" class="btn" id="movie">電影</button>
 		</form>
-	
+		
 	  </div>  
 		<div id='main'>
 		   
 		</div>
 			
 	  			<form action="http://localhost:3000/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
-					<input type="text" class="btn" id="nextpage" name="name" value='Next'>
-					<input type="submit" class="btn" id="nextpage" >
+					<input type="text"  id="nextpage" name="name" value='Next' style="visibility:hidden">
+					<input type="text"  id="nextboard" name="board" value='' style="visibility:hidden">
+					<input type="submit"  id="nextpage" value='下一頁'>
 				</form>
 	  		
 		  
