@@ -154,6 +154,8 @@
 		
 		function returngossiping() {  
 			
+			var myNode = document.getElementById("main");
+			myNode.innerHTML = '';
 			
 			
 			
@@ -162,7 +164,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('http://localhost:3000/gossiping', {}, function(data){
+				$.post('https://submitdemo.herokuapp.com/gossiping', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -183,7 +185,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:3000/post');
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -257,7 +259,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('http://localhost:3000/beauty', {}, function(data){
+				$.post('https://submitdemo.herokuapp.com/beauty', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -278,7 +280,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:3000/post');
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -356,7 +358,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('http://localhost:3000/movie', {}, function(data){
+				$.post('https://submitdemo.herokuapp.com/movie', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -377,7 +379,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:3000/post');
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -443,7 +445,107 @@
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
 		}
 		
-			function returnnextpage() {  
+		function returnEAseries() {  
+			
+			var myNode = document.getElementById("main");
+			myNode.innerHTML = '';
+			
+			// jquery 表单提交  
+			$("#showEAseries").ajaxSubmit(function(message) {  
+				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
+					//window.location = 'http://127.0.0.1:58153/index.html';
+				console.log("submit");
+				$.post('https://submitdemo.herokuapp.com/EAseries', {}, function(data){
+					console.log(data);
+					
+					for (i=0;i<data.length;i++){
+						
+					j=-i+data.length-1;
+					
+											
+					var post = document.createElement("div");
+					post.setAttribute('class','post');
+					post.setAttribute('id','post_'+i	);
+				
+					document.getElementById('main').appendChild(post);	
+						
+					var title = document.createElement("div");
+					title.innerHTML = data[j].title;
+					title.setAttribute('class','title');
+										
+					document.getElementById('post_'+i).appendChild(title);	
+						
+					var makelink = document.createElement("form");
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('method','POST');	
+					makelink.setAttribute('id','POSTform_' +i);	
+					makelink.setAttribute('name','name');
+					makelink.setAttribute('value',data[j].link);	
+						
+					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+						
+					makelink.setAttribute('onsubmit', goto);
+						
+					post.appendChild(makelink);			
+					
+					var premore = document.createElement("input");
+					premore.setAttribute('class','premore')
+					premore.setAttribute('type','text');
+					
+					premore.setAttribute('name','name');
+						
+					premore.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(premore);		
+						
+						
+					var more = document.createElement("input");
+					more.setAttribute('class','more')
+					more.setAttribute('type','submit');
+					
+					//more.setAttribute('name','name');
+						
+					more.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(more);		
+						
+					var author = document.createElement("div");
+					author.innerHTML = data[j].author;
+					author.setAttribute('class','author');
+						
+					//document.body.insertBefore(post, currentDiv); 
+					document.getElementById('post_'+i).appendChild(author);	
+						
+					var count = document.createElement("div");
+					count.innerHTML = data[j].count;
+					count.setAttribute('class','count');
+						
+					
+					title.appendChild(count);		
+						
+						
+					document.getElementById('nextboard').setAttribute('value','EAseries');
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+					console.log("set");
+						
+					}
+					
+				
+				});
+			
+			});  
+
+		
+			
+			  
+
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
+		}
+		
+		
+		
+		
+		function returnnextpage() {  
 			
 				
 			var myNode = document.getElementById("main");
@@ -475,7 +577,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:3000/next');
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -532,30 +634,50 @@
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
 		}
 		
+		function linkify(text) {
+			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+			return text.replace(urlRegex, function(url) {
+				if(url.match('jpg')){
+					return '<a href="' + url + '">' + url + '</a>';
+					
+					
+				}else {
+					return '<a href="' + url + '">' + url + '</a>';
+				}
+				
+			});
+		}
+		
 		
 		function returnpost(id){
-			//console.log(id);
+			console.log(id);
 			
 			var content = document.createElement("div");
 				content.setAttribute('id','contentpost');
 				document.querySelector('body').appendChild(content);
-			
-			$("#" + id).ajaxSubmit(function(message) {  
-				//console.log(message);
-				
-				var author = document.createElement("div");
-				author.innerHTML = '作者: ' + message[0].author + '<br>' + '標題: ' + message[0].title + '<br>' + '時間: ' + message[0].date + '<br><br>';
-				
-				var postcontent = document.createElement("pre");
-				postcontent.innerHTML = message[0].content;
-				
-				var closebtn = document.createElement("button");
+			var closebtn = document.createElement("button");
 				closebtn.setAttribute('id','closebtn');
 				closebtn.setAttribute('onclick','closepost()');
 				closebtn.innerHTML = 'Close';
 				
-				
 				content.appendChild(closebtn);
+			
+			
+			$("#" + id).ajaxSubmit(function(message) {  
+				console.log("msg"+message);
+				
+				var author = document.createElement("div");
+				
+				
+				var postcontent = document.createElement("pre");
+				
+				var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+				
+				
+				
+				postcontent.innerHTML = linkify(message[0].content);
+				
+			
 				content.appendChild(author);
 				content.appendChild(postcontent);
 				
@@ -577,24 +699,27 @@
 	  
 	  <div id='boardswitch'>
 		  
-		<form action="http://localhost:3000/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
+		<form action="https://submitdemo.herokuapp.com/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
 		 <button type="submit" class="btn" id="gossiping">八卦</button>		
 		 </form>
 		  
-		<form action="http://localhost:3000/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
+		<form action="https://submitdemo.herokuapp.com/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
 		 <button type="submit" class="btn" id="beauty">表特</button>
 		</form>
 		  
-		<form action="http://localhost:3000/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
+		<form action="https://submitdemo.herokuapp.com/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
 		 <button type="submit" class="btn" id="movie">電影</button>
 		</form>
+		<form action="https://submitdemo.herokuapp.com/EAseries " id="showEAseries" method="POST" onsubmit="return returnEAseries()">
+		 <button type="submit" class="btn" id="EAseries">美劇</button>
+		</form>  
 		
 	  </div>  
 		<div id='main'>
-		   
+		  
 		</div>
 			
-	  			<form action="http://localhost:3000/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
+	  			<form action="https://submitdemo.herokuapp.com/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
 					<input type="text"  id="nextpage" name="name" value='Next' style="visibility:hidden">
 					<input type="text"  id="nextboard" name="board" value='' style="visibility:hidden">
 					<input type="submit"  id="nextpage" value='下一頁'>
