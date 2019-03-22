@@ -67,6 +67,10 @@
 			float: left;
 			
 		}
+		#showtechjob{
+			float: left;
+			
+		}
 		
 		.post{
 			background-color: dimgray;
@@ -84,9 +88,11 @@
 			
 		}
 		.author{
-			font-size: 14px;
-			padding: 5px;
+			font-size: 12px;
+			padding-top: 10px;
+			padding-left: 5px;
 			width: auto;
+			color:white;
 			
 		}
 		.count{
@@ -104,9 +110,28 @@
 			
 		}
 		.more{
-			margin-top: 10px;
+			font-size: 10px;
+			margin-top: 5px;
 			float: right;
 			
+			border:0;
+		    color: #14396a !important;
+			box-shadow: 1px 1px 1px #bee2f9;
+			 
+			  -moz-border-radius: 5px;
+			  -webkit-border-radius: 5px;
+			  border-radius: 5px;
+			  
+			  background: white;
+			  
+			
+		}
+		
+		.more:hover {
+			
+		  color: #14396a !important;
+		  background: grey;
+		 
 		}
 		
 		.premore{
@@ -149,7 +174,28 @@
 	</style>
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="https://malsup.github.com/jquery.form.js"></script> 
-	<script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		
+		
+		<script>
+		  (adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-8048827950696941",
+			enable_page_level_ads: true
+		  });
+		</script>
+				<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136752565-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-136752565-1');
+		</script>
+
+		
+		
+		<script>
 		
 		
 		function returngossiping() {  
@@ -324,7 +370,9 @@
 					count.innerHTML = data[j].count;
 					count.setAttribute('class','count');
 						
-					
+					if(data[j].count === ""){
+					count.setAttribute('style','visibility:hidden');
+					}	
 						
 					title.appendChild(count);			
 					
@@ -423,7 +471,10 @@
 					count.innerHTML = data[j].count;
 					count.setAttribute('class','count');
 						
-					
+					if(data[j].count === ""){
+					count.setAttribute('style','visibility:hidden');
+					}	
+						
 					title.appendChild(count);		
 						
 						
@@ -520,8 +571,11 @@
 					count.innerHTML = data[j].count;
 					count.setAttribute('class','count');
 						
-					
-					title.appendChild(count);		
+					if(data[j].count === ""){
+					count.setAttribute('style','visibility:hidden');
+					}	
+						
+					title.appendChild(count);	
 						
 						
 					document.getElementById('nextboard').setAttribute('value','EAseries');
@@ -542,7 +596,206 @@
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
 		}
 		
+			
+		function returntechjob() {  
+			
+			var myNode = document.getElementById("main");
+			myNode.innerHTML = '';
+			
+			// jquery 表单提交  
+			$("#showtechjob").ajaxSubmit(function(message) {  
+				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
+					//window.location = 'http://127.0.0.1:58153/index.html';
+				console.log("submit");
+				$.post('https://submitdemo.herokuapp.com/techjob', {}, function(data){
+					console.log(data);
+					
+					for (i=0;i<data.length;i++){
+						
+					j=-i+data.length-1;
+					
+											
+					var post = document.createElement("div");
+					post.setAttribute('class','post');
+					post.setAttribute('id','post_'+i	);
+				
+					document.getElementById('main').appendChild(post);	
+						
+					var title = document.createElement("div");
+					title.innerHTML = data[j].title;
+					title.setAttribute('class','title');
+										
+					document.getElementById('post_'+i).appendChild(title);	
+						
+					var makelink = document.createElement("form");
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('method','POST');	
+					makelink.setAttribute('id','POSTform_' +i);	
+					makelink.setAttribute('name','name');
+					makelink.setAttribute('value',data[j].link);	
+						
+					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+						
+					makelink.setAttribute('onsubmit', goto);
+						
+					post.appendChild(makelink);			
+					
+					var premore = document.createElement("input");
+					premore.setAttribute('class','premore')
+					premore.setAttribute('type','text');
+					
+					premore.setAttribute('name','name');
+						
+					premore.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(premore);		
+						
+						
+					var more = document.createElement("input");
+					more.setAttribute('class','more')
+					more.setAttribute('type','submit');
+					
+					//more.setAttribute('name','name');
+						
+					more.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(more);		
+						
+					var author = document.createElement("div");
+					author.innerHTML = data[j].author;
+					author.setAttribute('class','author');
+						
+					//document.body.insertBefore(post, currentDiv); 
+					document.getElementById('post_'+i).appendChild(author);	
+						
+					var count = document.createElement("div");
+					count.innerHTML = data[j].count;
+					count.setAttribute('class','count');
+						
+					if(data[j].count === ""){
+					count.setAttribute('style','visibility:hidden');
+					}	
+						
+					title.appendChild(count);	
+						
+						
+					document.getElementById('nextboard').setAttribute('value','techjob');
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+					console.log("set");
+						
+					}
+					
+				
+				});
+			
+			});  
+
 		
+			
+			  
+
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
+		}	
+		
+		function returnboygirl() {  
+			
+			var myNode = document.getElementById("main");
+			myNode.innerHTML = '';
+			
+			// jquery 表单提交  
+			$("#showboygirl").ajaxSubmit(function(message) {  
+				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
+					//window.location = 'http://127.0.0.1:58153/index.html';
+				console.log("submit");
+				$.post('https://submitdemo.herokuapp.com/boygirl', {}, function(data){
+					console.log(data);
+					
+					for (i=0;i<data.length;i++){
+						
+					j=-i+data.length-1;
+					
+											
+					var post = document.createElement("div");
+					post.setAttribute('class','post');
+					post.setAttribute('id','post_'+i	);
+				
+					document.getElementById('main').appendChild(post);	
+						
+					var title = document.createElement("div");
+					title.innerHTML = data[j].title;
+					title.setAttribute('class','title');
+										
+					document.getElementById('post_'+i).appendChild(title);	
+						
+					var makelink = document.createElement("form");
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('method','POST');	
+					makelink.setAttribute('id','POSTform_' +i);	
+					makelink.setAttribute('name','name');
+					makelink.setAttribute('value',data[j].link);	
+						
+					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+						
+					makelink.setAttribute('onsubmit', goto);
+						
+					post.appendChild(makelink);			
+					
+					var premore = document.createElement("input");
+					premore.setAttribute('class','premore')
+					premore.setAttribute('type','text');
+					
+					premore.setAttribute('name','name');
+						
+					premore.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(premore);		
+						
+						
+					var more = document.createElement("input");
+					more.setAttribute('class','more')
+					more.setAttribute('type','submit');
+					
+					//more.setAttribute('name','name');
+						
+					more.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(more);		
+						
+					var author = document.createElement("div");
+					author.innerHTML = data[j].author;
+					author.setAttribute('class','author');
+						
+					//document.body.insertBefore(post, currentDiv); 
+					document.getElementById('post_'+i).appendChild(author);	
+						
+					var count = document.createElement("div");
+					count.innerHTML = data[j].count;
+					count.setAttribute('class','count');
+						
+					if(data[j].count === ""){
+					count.setAttribute('style','visibility:hidden');
+					}	
+						
+					title.appendChild(count);	
+						
+						
+					document.getElementById('nextboard').setAttribute('value','boygirl');
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+					console.log("set");
+						
+					}
+					
+				
+				});
+			
+			});  
+
+		
+			
+			  
+
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
+		}	
 		
 		
 		function returnnextpage() {  
@@ -699,6 +952,7 @@
 	  
 	  <div id='boardswitch'>
 		  
+		  
 		<form action="https://submitdemo.herokuapp.com/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
 		 <button type="submit" class="btn" id="gossiping">八卦</button>		
 		 </form>
@@ -709,10 +963,21 @@
 		  
 		<form action="https://submitdemo.herokuapp.com/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
 		 <button type="submit" class="btn" id="movie">電影</button>
+			
+		<form action="https://submitdemo.herokuapp.com/techjob " id="showtechjob" method="POST" onsubmit="return returntechjob()">
+		 <button type="submit" class="btn" id="techjob">科技業版</button>
+		</form> 
+		
+		<form action="https://submitdemo.herokuapp.com/boygirl " id="showboygirl" method="POST" onsubmit="return returnboygirl()">
+		 <button type="submit" class="btn" id="boygirl">男女</button>
+		</form> 	
+			
 		</form>
 		<form action="https://submitdemo.herokuapp.com/EAseries " id="showEAseries" method="POST" onsubmit="return returnEAseries()">
 		 <button type="submit" class="btn" id="EAseries">美劇</button>
 		</form>  
+		  
+		 
 		
 	  </div>  
 		<div id='main'>
