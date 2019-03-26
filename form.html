@@ -1,85 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>form</title>
-	<style>
-		h2 { text-align: center; }
-		div { width: 400px; margin: 10px auto; }
-		label{ width: 100%; display: inline-block; }
-		input, textarea{ width: 100%; display: inline-block; }
-		#send{ margin: 40px auto 0 auto; display: block; width: 50px; }
-	</style>
-		<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script> 
-	
-	<script>
-		
-		function start(){
-		var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:8082/test');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform');	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value','https://www.ptt.cc/bbs/Gossiping/M.1552182147.A.9F3.html');	
-						
-					var goto = 'return returnpost("' + 'POSTform' + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					document.getElementById('main').appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','more')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value','https://www.ptt.cc/bbs/Gossiping/M.1552182147.A.9F3.html');	
-					makelink.appendChild(premore);			
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					more.setAttribute('name','name');
-						
-					more.setAttribute('value','submit');	
-					makelink.appendChild(more);		
-		}
-		
-		function returnpost(id) {  
-			
-			// jquery 表单提交  
-			$("#" + id).ajaxSubmit(function(message) { 
-				console.log('ONsubmit: '+message);
-			});
-			return false;
-		}
-		
-		
-		
-		function returngossiping() {  
-			
-			// jquery 表单提交  
-			$("#showgossiping").ajaxSubmit(function(message) { 
-				console.log('ONsubmit: '+message);
-			});
-			return false;
-		}
-		
-	
-	
-	</script>
+
 </head>
-<body onload='start()'>
+<body >
 	
 	<div id='main'>
-	
+		<a href="http://justfortdemo.tk/" target="_blank" title="http://justfortdemo.tk/">網站移動中...</a>
 	</div>
-	<form action='http://localhost:8082/test' id='showgossiping' method='post' onsubmit="return returngossiping()">
-	<input type='text' name='name' value='fred'>
-	<input type='submit' value='Submit'>
-	</form>
+	
 </body>
 </html>

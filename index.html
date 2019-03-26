@@ -1,132 +1,121 @@
 <!DOCTYPE html>
 <html>
+	<title>PTMS</title>
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<head>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
 	<style>
 		body{
 			font-size: 12px;
-		
-			font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
-
-			
+			font-family: 'Noto Sans TC', sans-serif;
 		}
 		#boardswitch {
 			position: fixed;
-			background-color: aliceblue;
-			width: 800px;
+			background-color: #DDDFE3;
+			width: 805px;
 			height: 40px;
 			left: 50%;
 			margin:0 0 0 -400px;
-			border-radius:5px;
-			margin-top:5px;	
-			padding: 0px;
+			border-radius:0px;
+				
+			padding-left: 0px;
 			
 		}
 		
 		#nextpage{
 			position: fixed;;
-			background-color: ;
+			background-color: #ABD2D9;
 			width: 60px;
 			height: 40px;
 			left: 50%;
 			bottom: 10px;
 			margin:0 0 0 -20px;
-			border-radius:5px;
+			
 			padding: 0px;
+			border:0;
+		    color: black !important;
+		}
+		#nextpage:hover{
+			
+			background-color: #7398AA;
+		    color: black !important;
 		}
 		
 		#main{
+			border-style:solid;
+    		border-width:medium;
 			position: fixed;
 			left: 50%;
 			margin:0 0 0 -400px;
-			background-color:azure;
+			background-color:#DDDFE3;
 			width: 800px;
-			height: 90%;
+			bottom: 60px;
 			top:55px;
-			border-radius:5px;
+			border-radius:0px;
 			overflow-x: auto;
 			padding: 0px;
 		}
 		
 		.btn{
-			background-color: skyblue;
-			border-radius:5px;
-			margin:5px;
+			font-family: 'Noto Sans TC', sans-serif;
+			border: 0px;
+			font-size: 16px;
+			background-color: #7BBFC8;
+			text-align: center;
+			color:black;
+			border-radius:0px;
+			margin:4px;
 			padding: 5px;
-			
-		}
-		
-		#showgossiping{
 			float: left;
 		}
-		#showbeauty{
-			float: left;
-		}
-		
-		#showmovie{
-			float: left;
-			
-		}
-		#showtechjob{
-			float: left;
-			
-		}
-		#showboygirl{
-			float: left;
-			
+		.btn:hover{
+			background-color: #7398AA;
 		}
 		
 		.post{
-			background-color: dimgray;
+			background-color: #7398AA;
 			margin:0 auto; 
-			border-radius:5px;
+			border-radius:0px;
 			margin:5px;	
 			padding: 5px;
 			
 		}
 		.title{
 			font-size: 14px;
-			background-color: gainsboro;
+			background-color: #ABD2D9;
 			padding: 5px;
-			border-radius:5px;
+			border-radius:0px;
 			
 		}
 		.author{
 			font-size: 12px;
-			padding-top: 10px;
+			padding-top: 4px;
 			padding-left: 5px;
 			width: auto;
 			color:white;
 			
 		}
 		.count{
-			font-size: 12px;
-			background-color:yellow;
-			border-radius:100px;
+			font-size: 10px;
+			background-color:gainsboro;
 			margin-top: -22px;
-			right: 10px;
+			right: 14px;
 			position: absolute;
-			
 			text-align: center;
-			padding:5px;
-			width: 15px;
-			height:15px;
+			padding: 2px;
+			width: 20px;
+			height:20px;
 			
 		}
 		.more{
+			font-family: 'Noto Sans TC', sans-serif;
 			font-size: 10px;
-			margin-top: 5px;
+			margin-top:5px;
 			float: right;
 			
 			border:0;
 		    color: #14396a !important;
-			box-shadow: 1px 1px 1px #bee2f9;
-			 
-			  -moz-border-radius: 5px;
-			  -webkit-border-radius: 5px;
-			  border-radius: 5px;
-			  
-			  background: white;
+			background: #7398AA;
 			  
 			
 		}
@@ -134,7 +123,7 @@
 		.more:hover {
 			
 		  color: #14396a !important;
-		  background: grey;
+		  background: #C3D3D6;
 		 
 		}
 		
@@ -146,14 +135,14 @@
 		#contentpost{
 			position: fixed;
 			width: 800px;
-			height: 80%;
+			height: 75%;
 			overflow-x: auto;
 			background-color: gainsboro;
 			padding: 5px;
 			top:100px;
 			left:50%;
-			margin: -20px 0 0 -400px;
-			border-radius:10px;
+			margin: -48px 0 0 -404px;
+			border-radius:0px;
 			border-style:solid;
 			border-width:2px;
 			z-index: 2;
@@ -163,16 +152,27 @@
 		
 		#closebtn{
 			position: fixed;
+			border:0;
+			background: #C3D3D6;
+		  	color: #14396a;
 			left:50%;
 			width: 50px;
+			height: 30px;
 			margin: 0 0 0 320px;
+			border-radius: 0px;
 			z-index: 2;
 			
 		}
-		
-		
+		#closebtn:hover {
+			color: white;
+		  	background: #7398AA;
+		}
 		pre {
-			font-family: 微軟正黑體; “Microsoft JhengHei”, sans-serif;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: 5px;
+			margin-right: 5px;
+			font-family: 'Noto Sans TC', sans-serif;
 			font-size: 14px;
 		}
 	</style>
@@ -201,12 +201,18 @@
 		
 		<script>
 		
-		
+			
+		var flag = true;	
+			
 		function returngossiping() {  
+			
+			
+			if(flag == true){
+					flag = false;
 			
 			var myNode = document.getElementById("main");
 			myNode.innerHTML = '';
-			
+		
 			
 			
 			// jquery 表单提交  
@@ -214,6 +220,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
+				
 				$.post('https://submitdemo.herokuapp.com/gossiping', {}, function(data){
 					console.log(data);
 					
@@ -289,23 +296,30 @@
 					document.getElementById('nextboard').setAttribute('value','gossiping');
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
-				
+					
+					flag = true;
 				});
 				
 				
-			
+				
 			});  
-
+			}
+			
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
+			
 		}  
 		
 		function returnbeauty() {  
+			if(flag == true){
+				flag = false;
 			
 			var myNode = document.getElementById("main");
 			myNode.innerHTML = '';
 			
 			// jquery 表单提交  
 			$("#showbeauty").ajaxSubmit(function(message) {  
+			
+				
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
@@ -383,16 +397,19 @@
 					document.getElementById('nextboard').setAttribute('value','beauty');
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
-						
+				
+					flag = true;
+					
 						
 					}
 					
 					
 				});
-			
+				
 			});  
 
 		
+			}
 			
 			  
 
@@ -401,12 +418,16 @@
 		
 	
 		function returnmovie() {  
-			
+			if(flag == true){
+				flag = false;
+				
 			var myNode = document.getElementById("main");
 			myNode.innerHTML = '';
 			
 			// jquery 表单提交  
 			$("#showmovie").ajaxSubmit(function(message) {  
+				
+				
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
@@ -486,27 +507,36 @@
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
 						
+				
+					flag = true;
+				
 					}
 					
 				
 				});
+				
 			
 			});  
 
 		
 			
-			  
+			  }
 
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
 		}
 		
 		function returnEAseries() {  
-			
+				if(flag == true){
+					flag = false;
+				
 			var myNode = document.getElementById("main");
 			myNode.innerHTML = '';
 			
 			// jquery 表单提交  
 			$("#showEAseries").ajaxSubmit(function(message) {  
+				
+			
+				
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
@@ -585,15 +615,19 @@
 					document.getElementById('nextboard').setAttribute('value','EAseries');
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
-						
+							
+			
+					flag = true;
+				
 					}
 					
 				
 				});
-			
+				
 			});  
 
 		
+			}
 			
 			  
 
@@ -602,12 +636,17 @@
 		
 			
 		function returntechjob() {  
-			
+				if(flag == true){
+					flag = false;
+				
 			var myNode = document.getElementById("main");
 			myNode.innerHTML = '';
 			
 			// jquery 表单提交  
 			$("#showtechjob").ajaxSubmit(function(message) {  
+				
+			
+				
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
@@ -687,27 +726,35 @@
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
 						
+				
+					flag = true;
+				
 					}
 					
 				
 				});
+				
 			
 			});  
 
 		
-			
+			}
 			  
 
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
 		}	
 		
 		function returnboygirl() {  
-			
+			if(flag == true){
+					flag = false;
+				
 			var myNode = document.getElementById("main");
 			myNode.innerHTML = '';
 			
 			// jquery 表单提交  
 			$("#showboygirl").ajaxSubmit(function(message) {  
+				
+				
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
@@ -783,34 +830,40 @@
 					title.appendChild(count);	
 						
 						
-					document.getElementById('nextboard').setAttribute('value','boygirl');
+					document.getElementById('nextboard').setAttribute('value','boy-girl');
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
-						
+				
+					flag = true;
+				
 					}
 					
 				
 				});
+				
 			
 			});  
 
-		
+		}
 			
 			  
 
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
 		}	
-		
-		
-		function returnnextpage() {  
 			
-				
+			
+			
+		function returnboard(board) {  
+			
+				if(flag == true){
+					flag = false;
+					
 			var myNode = document.getElementById("main");
 			myNode.innerHTML = '';
 			
 			// jquery 表单提交  
-			$("#shownextpage").ajaxSubmit(function(data) {  
-				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
+			$("#show"+board).ajaxSubmit(function(data) {  
+					  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
 				
@@ -880,11 +933,110 @@
 						
 					
 					title.appendChild(count);		
+					
+					}
+					document.getElementById('nextboard').setAttribute('value',document.getElementById('foruser').value);
+				console.log(document.getElementById('nextboard').setAttribute('value',document.getElementById('foruser').value))
+					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
+					console.log("set");
+					flag = true;
+				
+			});
+			}
+
+		 
+
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
+		}
+		
+		function returnnextpage() {  
+			
+				if(flag == true){
+					flag = false;
+					
+			var myNode = document.getElementById("main");
+			myNode.innerHTML = '';
+			
+			// jquery 表单提交  
+			$("#shownextpage").ajaxSubmit(function(data) {  
+					  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
+					//window.location = 'http://127.0.0.1:58153/index.html';
+				console.log("submit");
+				
+					console.log(data);
+					
+					for (i=0;i<data.length;i++){
+						
+					j=-i+data.length-1;
+					
+											
+					var post = document.createElement("div");
+					post.setAttribute('class','post');
+					post.setAttribute('id','post_'+i	);
+				
+					document.getElementById('main').appendChild(post);	
+						
+					var title = document.createElement("div");
+					title.innerHTML = data[j].title;
+					title.setAttribute('class','title');
+										
+					document.getElementById('post_'+i).appendChild(title);	
+						
+					var makelink = document.createElement("form");
+					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('method','POST');	
+					makelink.setAttribute('id','POSTform_' +i);	
+					makelink.setAttribute('name','name');
+					makelink.setAttribute('value',data[j].link);	
+						
+					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+						
+					makelink.setAttribute('onsubmit', goto);
+						
+					post.appendChild(makelink);			
+					
+					var premore = document.createElement("input");
+					premore.setAttribute('class','premore')
+					premore.setAttribute('type','text');
+					
+					premore.setAttribute('name','name');
+						
+					premore.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(premore);		
+						
+						
+					var more = document.createElement("input");
+					more.setAttribute('class','more')
+					more.setAttribute('type','submit');
+					
+					//more.setAttribute('name','name');
+						
+					more.setAttribute('value',data[j].link);	
+					
+					makelink.appendChild(more);		
+						
+					var author = document.createElement("div");
+					author.innerHTML = data[j].author;
+					author.setAttribute('class','author');
+						
+					//document.body.insertBefore(post, currentDiv); 
+					document.getElementById('post_'+i).appendChild(author);	
+						
+					var count = document.createElement("div");
+					count.innerHTML = data[j].count;
+					count.setAttribute('class','count');
+						
+					
+					title.appendChild(count);		
+					
 					}
 					
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-				});
-			
+					flag = true;
+				
+			});
+			}
 
 		 
 
@@ -895,11 +1047,12 @@
 			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 			return text.replace(urlRegex, function(url) {
 				if(url.match('jpg')){
-					return '<a href="' + url + '">' + url + '</a>';
+					return '<a href="' + url + '" target="_blank">' + url + '</a>';
+					//'<a href="' + url + '">' + url + '</a>';
 					
 					
 				}else {
-					return '<a href="' + url + '">' + url + '</a>';
+					return '<a href="' + url + '" target="_blank">' + url + '</a>';
 				}
 				
 			});
@@ -921,7 +1074,6 @@
 			
 			
 			$("#" + id).ajaxSubmit(function(message) {  
-				console.log("msg"+message);
 				
 				var author = document.createElement("div");
 				
@@ -932,7 +1084,16 @@
 				
 				
 				
-				postcontent.innerHTML = linkify(message[0].content);
+				
+				
+				var firstLine = message[0].content.split('\n')[0];
+				var time = firstLine.split('時間')[1];
+				var title = firstLine.split('時間')[0].split('標題')[1];
+				var board = firstLine.split('時間')[0].split('標題')[0].split('看板')[1];
+				var au = firstLine.split('時間')[0].split('標題')[0].split('看板')[0].split('作者')[1];
+				
+				
+				postcontent.innerHTML = linkify(message[0].content.replace(au,au+'\n').replace(title,title+'\n').replace(time,time+'\n').replace(board,board+'\n'));
 				
 			
 				content.appendChild(author);
@@ -958,7 +1119,7 @@
 		  
 		  
 		<form action="https://submitdemo.herokuapp.com/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
-		 <button type="submit" class="btn" id="gossiping">八卦</button>		
+		 <button class="btn" id="gossiping">八卦</button>		
 		 </form>
 		  
 		<form action="https://submitdemo.herokuapp.com/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
@@ -977,23 +1138,29 @@
 		 <button type="submit" class="btn" id="boygirl">男女</button>
 		</form> 	
 			
-		</form>
 		<form action="https://submitdemo.herokuapp.com/EAseries " id="showEAseries" method="POST" onsubmit="return returnEAseries()">
 		 <button type="submit" class="btn" id="EAseries">美劇</button>
 		</form>  
-		  
-		 
+		
+		  <form action="https://submitdemo.herokuapp.com/board" id="showsex" method="POST" onsubmit="return returnboard('sex')" name='name' value='123'>
+					<input type="text" class="btn" id='foruser' name="board" value='請輸入看板英文名' style="background:#C3D3D6">
+					<input type="submit" class="btn"  value='GO!'>
+				</form>
+		
 		
 	  </div>  
+	  
 		<div id='main'>
 		  
 		</div>
-			
+	   
 	  			<form action="https://submitdemo.herokuapp.com/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
 					<input type="text"  id="nextpage" name="name" value='Next' style="visibility:hidden">
 					<input type="text"  id="nextboard" name="board" value='' style="visibility:hidden">
 					<input type="submit"  id="nextpage" value='下一頁'>
 				</form>
+	  
+	  
 	  		
 		  
   </body>
