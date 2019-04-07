@@ -47,7 +47,6 @@ app.post('/board', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -58,6 +57,15 @@ app.post('/board', (appreq, appres) => {
 
 		}).get()
 
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
+
+		}).get()
+		
 		author = $('.author').map((index, obj) => {
 			return {
 				author: $(obj).text(),
@@ -115,16 +123,14 @@ app.post('/board', (appreq, appres) => {
 		var nowpage = getPageNumber();
 
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title, 
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title, 
+					link: list[i].link,
+					nowpage: nowpage,
+				})
 		}
 		
 	
@@ -164,7 +170,6 @@ app.post('/gossiping', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -174,7 +179,15 @@ app.post('/gossiping', (appreq, appres) => {
 
 
 		}).get()
+		
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
 
+		}).get()
 		author = $('.author').map((index, obj) => {
 			return {
 				author: $(obj).text(),
@@ -220,20 +233,18 @@ app.post('/gossiping', (appreq, appres) => {
 		var nowpage = getPageNumber();
 
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title, 
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title, 
+					link: list[i].link,
+					nowpage: nowpage,
+				})
 		}
 		
-	
-
+		
+		
 		appres.send(post);
 	});
 	
@@ -264,9 +275,7 @@ app.post('/next', (appreq, appres) => {
 				if ( $(obj).text().match('搜尋看板內') == null ){
 					if ( $(obj).text().match('[公告]111') == null ){
 						if ( $(obj).text().match('[協尋]111') == null ){
-
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -276,13 +285,24 @@ app.post('/next', (appreq, appres) => {
 
 
 		}).get()
+		
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
+
+		}).get()
 
 		author = $('.author').map((index, obj) => {
+			
 			return {
 				author: $(obj).text(),
 			}
 
 		}).get()
+		
 
 		date = $('.date').map((index, obj) => {
 			return {
@@ -298,8 +318,8 @@ app.post('/next', (appreq, appres) => {
 					}
 				}).get()
 
-
-		//console.log(count);
+		
+		
 		let prevLink = '';
 		prev = $('.btn,.wide').map((index, obj) => {
 			if($(obj).text().includes('上頁')) {
@@ -314,9 +334,7 @@ app.post('/next', (appreq, appres) => {
 		
 		
 		function getPageNumber() {
-			
-			
-			
+				
 			if(prev[0] != undefined ){
 				
 				let prev1 = prev[0].prevLink;
@@ -332,22 +350,23 @@ app.post('/next', (appreq, appres) => {
 			}
 		  }
 		var nowpage = getPageNumber();
-
+		
+		
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title, 
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title, 
+					link: list[i].link,
+					nowpage: nowpage,
+				})
+			
 		}
 		
 	
-
+		
 		appres.send(post);
 	});
 	
@@ -379,7 +398,6 @@ app.post('/boygirl', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -390,6 +408,15 @@ app.post('/boygirl', (appreq, appres) => {
 
 		}).get()
 
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
+
+		}).get()
+		
 		author = $('.author').map((index, obj) => {
 			return {
 				author: $(obj).text(),
@@ -438,16 +465,14 @@ app.post('/boygirl', (appreq, appres) => {
 		//console.log(count);
 
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title, 
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title, 
+					link: list[i].link,
+					nowpage: nowpage,
+				})
 		}
 		
 	
@@ -484,7 +509,6 @@ app.post('/beauty', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -492,6 +516,15 @@ app.post('/beauty', (appreq, appres) => {
 				}
 			}
 
+
+		}).get()
+		
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
 
 		}).get()
 
@@ -543,16 +576,14 @@ app.post('/beauty', (appreq, appres) => {
 		//console.log(count);
 
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title, 
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title, 
+					link: list[i].link,
+					nowpage: nowpage,
+				})
 		}
 		
 	
@@ -588,7 +619,6 @@ app.post('/EAseries', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -599,6 +629,15 @@ app.post('/EAseries', (appreq, appres) => {
 
 		}).get()
 
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
+
+		}).get()
+		
 		author = $('.author').map((index, obj) => {
 			return {
 				author: $(obj).text(),
@@ -647,16 +686,15 @@ app.post('/EAseries', (appreq, appres) => {
 		//console.log(count);
 
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title, 
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title, 
+					link: list[i].link,
+					nowpage: nowpage,
+				})
+			
 		}
 		
 	
@@ -693,7 +731,6 @@ app.post('/techjob', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -701,6 +738,15 @@ app.post('/techjob', (appreq, appres) => {
 				}
 			}
 
+
+		}).get()
+		
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
 
 		}).get()
 
@@ -752,16 +798,14 @@ app.post('/techjob', (appreq, appres) => {
 		//console.log(count);
 
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title, 
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title, 
+					link: list[i].link,
+					nowpage: nowpage,
+				})
 		}
 		
 	
@@ -845,7 +889,6 @@ app.post('/movie', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
-							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -853,6 +896,15 @@ app.post('/movie', (appreq, appres) => {
 				}
 			}
 
+
+		}).get()
+		
+		
+		listtitle = $('.title').map((index, obj) => {
+			
+			return {
+				title: $(obj).text(),
+			}
 
 		}).get()
 
@@ -904,16 +956,14 @@ app.post('/movie', (appreq, appres) => {
 		//console.log(count);
 
 		for(i=0;i<list.length;i++){
-
-			post.push({
-				title: list[i].title,
-				author:author[i].author,
-				date:date[i].date,
-				count: count[i].title,
-				link: list[i].link,
-				nowpage: nowpage,
-			})
-
+				post.push({
+					title: listtitle[i].title,
+					author:author[i].author,
+					date:date[i].date,
+					count: count[i].title,
+					link: list[i].link,
+					nowpage: nowpage,
+				})
 		}
 		
 	

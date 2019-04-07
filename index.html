@@ -23,6 +23,7 @@
 		}
 		
 		#nextpage{
+			font-family: 'Noto Sans TC', sans-serif;
 			position: fixed;;
 			background-color: #ABD2D9;
 			width: 60px;
@@ -175,10 +176,15 @@
 			font-family: 'Noto Sans TC', sans-serif;
 			font-size: 14px;
 		}
+		.akb_iframe{
+			
+			z-index: 2;
+		}
+		
 	</style>
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="https://malsup.github.com/jquery.form.js"></script> 
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	
 		
 		
 		<script>
@@ -201,6 +207,9 @@
 		
 		<script>
 		
+		var ad =document.querySelector(".akb_iframe");
+		
+		
 			
 		var flag = true;	
 			
@@ -221,7 +230,7 @@
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
 				
-				$.post('https://submitdemo.herokuapp.com/gossiping', {}, function(data){
+				$.post('http://localhost:3000/gossiping', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -242,7 +251,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -323,7 +332,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/beauty', {}, function(data){
+				$.post('http://localhost:3000/beauty', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -344,7 +353,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -431,7 +440,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/movie', {}, function(data){
+				$.post('http://localhost:3000/movie', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -452,7 +461,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -540,7 +549,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/EAseries', {}, function(data){
+				$.post('http://localhost:3000/EAseries', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -561,7 +570,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -650,7 +659,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/techjob', {}, function(data){
+				$.post('http://localhost:3000/techjob', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -671,7 +680,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -722,9 +731,11 @@
 					title.appendChild(count);	
 						
 						
-					document.getElementById('nextboard').setAttribute('value','techjob');
+						
+						
+					document.getElementById('nextboard').setAttribute('value','tech_job');
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					console.log("set");
+					
 						
 				
 					flag = true;
@@ -758,7 +769,7 @@
 				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
 					//window.location = 'http://127.0.0.1:58153/index.html';
 				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/boygirl', {}, function(data){
+				$.post('http://localhost:3000/boygirl', {}, function(data){
 					console.log(data);
 					
 					for (i=0;i<data.length;i++){
@@ -779,7 +790,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -887,7 +898,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -936,7 +947,7 @@
 					
 					}
 					document.getElementById('nextboard').setAttribute('value',document.getElementById('foruser').value);
-				console.log(document.getElementById('nextboard').setAttribute('value',document.getElementById('foruser').value))
+					console.log(document.getElementById('nextboard').setAttribute('value',document.getElementById('foruser').value))
 					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
 					console.log("set");
 					flag = true;
@@ -983,7 +994,7 @@
 					document.getElementById('post_'+i).appendChild(title);	
 						
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
@@ -1110,7 +1121,11 @@
 			document.getElementById('contentpost').remove();
 			
 		}
+			
+			
+			
 	</script>
+		
 		</head>
   <body onload="return returngossiping()">
 	  
@@ -1118,31 +1133,31 @@
 	  <div id='boardswitch'>
 		  
 		  
-		<form action="https://submitdemo.herokuapp.com/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
+		<form action="http://localhost:3000/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
 		 <button class="btn" id="gossiping">八卦</button>		
 		 </form>
 		  
-		<form action="https://submitdemo.herokuapp.com/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
+		<form action="http://localhost:3000/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
 		 <button type="submit" class="btn" id="beauty">表特</button>
 		</form>
 		  
-		<form action="https://submitdemo.herokuapp.com/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
+		<form action="http://localhost:3000/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
 		 <button type="submit" class="btn" id="movie">電影</button>
 		</form>  
 			
-		<form action="https://submitdemo.herokuapp.com/techjob " id="showtechjob" method="POST" onsubmit="return returntechjob()">
+		<form action="http://localhost:3000/techjob " id="showtechjob" method="POST" onsubmit="return returntechjob()">
 		 <button type="submit" class="btn" id="techjob">科技業</button>
 		</form> 
 		
-		<form action="https://submitdemo.herokuapp.com/boygirl " id="showboygirl" method="POST" onsubmit="return returnboygirl()">
+		<form action="http://localhost:3000/boygirl " id="showboygirl" method="POST" onsubmit="return returnboygirl()">
 		 <button type="submit" class="btn" id="boygirl">男女</button>
 		</form> 	
 			
-		<form action="https://submitdemo.herokuapp.com/EAseries " id="showEAseries" method="POST" onsubmit="return returnEAseries()">
+		<form action="http://localhost:3000/EAseries " id="showEAseries" method="POST" onsubmit="return returnEAseries()">
 		 <button type="submit" class="btn" id="EAseries">美劇</button>
 		</form>  
 		
-		  <form action="https://submitdemo.herokuapp.com/board" id="showsex" method="POST" onsubmit="return returnboard('sex')" name='name' value='123'>
+		  <form action="http://localhost:3000/board" id="showsex" method="POST" onsubmit="return returnboard('sex')" name='name' value='123'>
 					<input type="text" class="btn" id='foruser' name="board" value='請輸入看板英文名' style="background:#C3D3D6">
 					<input type="submit" class="btn"  value='GO!'>
 				</form>
@@ -1154,12 +1169,19 @@
 		  
 		</div>
 	   
-	  			<form action="https://submitdemo.herokuapp.com/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
+	  	<script language="javascript">
+pad_width=300;
+pad_height=250;
+pad_customerId="PFBC20190325001";
+pad_positionId="PFBP201903250001C";
+</script>
+		<script id="pcadscript" language="javascript" src="https://kdpic.pchome.com.tw/img/js/xpcadshow.js"></script>
+	  <a href="http://justfortdemo.tk/" target="_blank" title="http://justfortdemo.tk/">網站移動中...</a>
+	  			<form action="http://localhost:3000/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
 					<input type="text"  id="nextpage" name="name" value='Next' style="visibility:hidden">
 					<input type="text"  id="nextboard" name="board" value='' style="visibility:hidden">
 					<input type="submit"  id="nextpage" value='下一頁'>
 				</form>
-	  
 	  
 	  		
 		  
