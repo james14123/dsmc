@@ -290,9 +290,12 @@ app.post('/next', (appreq, appres) => {
 		
 		listtitle = $('.title').map((index, obj) => {
 			if($(obj).text().match('(本文已被刪除)')){
-			return {
+			
+			}else{
+				return {
 				title: $(obj).text(),
-			}
+				 }
+				
 			}
 		}).get()
 
