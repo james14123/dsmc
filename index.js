@@ -276,6 +276,7 @@ app.post('/next', (appreq, appres) => {
 					if ( $(obj).text().match('[公告]111') == null ){
 						if ( $(obj).text().match('[協尋]111') == null ){
 							return {
+							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -288,17 +289,18 @@ app.post('/next', (appreq, appres) => {
 		
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
 			return {
 				title: $(obj).text(),
 			}
-
+			}
 		}).get()
 
 		author = $('.author').map((index, obj) => {
-			
-			return {
-				author: $(obj).text(),
+			if($(obj).text() != '-'){
+				return {
+					author: $(obj).text(),
+				}
 			}
 
 		}).get()
