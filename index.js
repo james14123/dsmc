@@ -59,16 +59,20 @@ app.post('/board', (appreq, appres) => {
 
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
+			}else{
 			return {
 				title: $(obj).text(),
+			}
 			}
 
 		}).get()
 		
 		author = $('.author').map((index, obj) => {
+			if($(obj).text() != '-'){
 			return {
 				author: $(obj).text(),
+			}
 			}
 
 		}).get()
@@ -182,15 +186,19 @@ app.post('/gossiping', (appreq, appres) => {
 		
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
+			}else{
 			return {
 				title: $(obj).text(),
+			}
 			}
 
 		}).get()
 		author = $('.author').map((index, obj) => {
+			if($(obj).text() != '-'){
 			return {
 				author: $(obj).text(),
+			}
 			}
 
 		}).get()
@@ -415,16 +423,20 @@ app.post('/boygirl', (appreq, appres) => {
 
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
+			}else{
 			return {
 				title: $(obj).text(),
+			}
 			}
 
 		}).get()
 		
 		author = $('.author').map((index, obj) => {
+			if($(obj).text() != '-'){
 			return {
 				author: $(obj).text(),
+			}
 			}
 
 		}).get()
@@ -526,7 +538,8 @@ app.post('/beauty', (appreq, appres) => {
 		
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
+			}else{
 			return {
 				title: $(obj).text(),
 			}
@@ -534,8 +547,10 @@ app.post('/beauty', (appreq, appres) => {
 		}).get()
 
 		author = $('.author').map((index, obj) => {
+			if($(obj).text() != '-'){
 			return {
 				author: $(obj).text(),
+			}
 			}
 
 		}).get()
@@ -636,16 +651,20 @@ app.post('/EAseries', (appreq, appres) => {
 
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
+			}else{
 			return {
 				title: $(obj).text(),
+			}
 			}
 
 		}).get()
 		
 		author = $('.author').map((index, obj) => {
+			if($(obj).text() != '-'){
 			return {
 				author: $(obj).text(),
+			}
 			}
 
 		}).get()
@@ -748,16 +767,20 @@ app.post('/techjob', (appreq, appres) => {
 		
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
+			}else{
 			return {
 				title: $(obj).text(),
+			}
 			}
 
 		}).get()
 
 		author = $('.author').map((index, obj) => {
+			if($(obj).text() != '-'){
 			return {
 				author: $(obj).text(),
+			}
 			}
 
 		}).get()
@@ -906,16 +929,20 @@ app.post('/movie', (appreq, appres) => {
 		
 		
 		listtitle = $('.title').map((index, obj) => {
-			
+			if($(obj).text().match('(本文已被刪除)')){
+			}else{
 			return {
 				title: $(obj).text(),
+			}
 			}
 
 		}).get()
 
 		author = $('.author').map((index, obj) => {
+			if($(obj).text() != '-'){
 			return {
 				author: $(obj).text(),
+			}
 			}
 
 		}).get()
