@@ -543,6 +543,7 @@ app.post('/beauty', (appreq, appres) => {
 			return {
 				title: $(obj).text(),
 			}
+			}
 
 		}).get()
 
