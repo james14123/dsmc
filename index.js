@@ -47,6 +47,7 @@ app.post('/board', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
+							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -128,7 +129,7 @@ app.post('/board', (appreq, appres) => {
 
 		for(i=0;i<list.length;i++){
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title, 
@@ -242,7 +243,7 @@ app.post('/gossiping', (appreq, appres) => {
 
 		for(i=0;i<list.length;i++){
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title, 
@@ -368,7 +369,7 @@ app.post('/next', (appreq, appres) => {
 		for(i=0;i<list.length;i++){
 				
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title, 
@@ -483,7 +484,7 @@ app.post('/boygirl', (appreq, appres) => {
 
 		for(i=0;i<list.length;i++){
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title, 
@@ -598,7 +599,7 @@ app.post('/beauty', (appreq, appres) => {
 
 		for(i=0;i<list.length;i++){
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title, 
@@ -712,7 +713,7 @@ app.post('/EAseries', (appreq, appres) => {
 
 		for(i=0;i<list.length;i++){
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title, 
@@ -828,7 +829,7 @@ app.post('/techjob', (appreq, appres) => {
 
 		for(i=0;i<list.length;i++){
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title, 
@@ -990,7 +991,7 @@ app.post('/movie', (appreq, appres) => {
 
 		for(i=0;i<list.length;i++){
 				post.push({
-					title: listtitle[i].title,
+					title: list[i].title,
 					author:author[i].author,
 					date:date[i].date,
 					count: count[i].title,
