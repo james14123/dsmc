@@ -175,6 +175,7 @@ app.post('/gossiping', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
+							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -412,6 +413,7 @@ app.post('/boygirl', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
+							  title: $(obj).text(),	
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -527,6 +529,7 @@ app.post('/beauty', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
+							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -641,6 +644,7 @@ app.post('/EAseries', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
+							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -757,6 +761,7 @@ app.post('/techjob', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
+							  title: $(obj).text(),
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
@@ -919,6 +924,7 @@ app.post('/movie', (appreq, appres) => {
 						if ( $(obj).text().match('[協尋]111') == null ){
 
 							return {
+							  title: $(obj).text(),	
 							  link: 'https://www.ptt.cc' + $(obj).attr('href'),
 							}
 						}
