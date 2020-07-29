@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html>
-	<title>PTMS</title>
+<html lang="en">
+<head>
+	<title>DSMC</title>
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<head>
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
 	<style>
+		
 		body{
+			background-color:#092E49;
+			
 			font-size: 12px;
 			font-family: 'Noto Sans TC', sans-serif;
 		}
-		#boardswitch {
-			position: fixed;
-			background-color: #DDDFE3;
-			width: 805px;
-			height: 40px;
-			left: 50%;
-			margin:0 0 0 -400px;
+		#board{
+			font-size: 20px;
+			padding: 5px;
 			border-radius:0px;
-				
-			padding-left: 0px;
-			
 		}
 		
 		#nextpage{
@@ -34,7 +31,7 @@
 			
 			padding: 0px;
 			border:0;
-		    color: black !important;
+			color: black !important;
 		}
 		#nextpage:hover{
 			
@@ -43,20 +40,22 @@
 		}
 		
 		#main{
+			
+			background-color:#F5F5F5;
 			border-style:solid;
-    		border-width:medium;
+    			border-width:medium;
 			position: fixed;
 			left: 50%;
 			margin:0 0 0 -400px;
-			background-color:#DDDFE3;
-			width: 800px;
+			width: 700px;
 			bottom: 60px;
-			top:55px;
+			top:80px;
 			border-radius:0px;
 			overflow-x: auto;
-			padding: 0px;
+			padding: 50px;
 		}
 		
+	
 		.btn{
 			font-family: 'Noto Sans TC', sans-serif;
 			border: 0px;
@@ -74,20 +73,38 @@
 		}
 		
 		.post{
-			background-color: #7398AA;
+			
+			background-color:#F5F5F5;
+			border-bottom-style: solid;
 			margin:0 auto; 
 			border-radius:0px;
-			margin:5px;	
-			padding: 5px;
+			
 			
 		}
-		.title{
+		
+		
+		.gender{
+			font-weight: 500;
 			font-size: 14px;
+			padding: 5px;
+			border-radius:0px;
+		}
+		
+		.title{
+			font-weight: 500;
+			font-size: 18px;
 			background-color: #ABD2D9;
 			padding: 5px;
 			border-radius:0px;
 			
 		}
+		.briefcontent{
+			font-size: 14px;
+			padding: 5px;
+			border-radius:0px;
+		}
+		
+		
 		.author{
 			font-size: 12px;
 			padding-top: 4px;
@@ -111,24 +128,24 @@
 		.more{
 			font-family: 'Noto Sans TC', sans-serif;
 			font-size: 10px;
-			margin-top:5px;
-			float: right;
-			
-			border:0;
-		    color: #14396a !important;
-			background: #7398AA;
+			margin-bottom:3px;
+			border:5px;
+			color: #14396a !important;
+			border-radius: 10px;
 			  
 			
 		}
 		
 		.more:hover {
 			
-		  color: #14396a !important;
-		  background: #C3D3D6;
+			color: #14396a !important;
+			background: #C3D3D6;
 		 
 		}
 		
 		.premore{
+			
+		
 			position: fixed;
 			visibility: hidden;
 			
@@ -151,6 +168,15 @@
 			
 		}
 		
+		img {
+			display: block;
+			max-width:500px;
+			max-height:500px;
+			width: auto;
+			height: auto;
+		   
+		}
+		
 		#closebtn{
 			position: fixed;
 			border:0;
@@ -161,9 +187,19 @@
 			height: 30px;
 			margin: 0 0 0 320px;
 			border-radius: 0px;
+			font-family: 'Noto Sans TC', sans-serif;
 			z-index: 2;
 			
 		}
+		
+		.postcontenttitle{
+			font-weight: 500;
+			font-size: 18px;
+			padding: 10px;
+			border-radius:0px;
+		}
+		
+		
 		#closebtn:hover {
 			color: white;
 		  	background: #7398AA;
@@ -173,90 +209,76 @@
 			margin-bottom: 0px;
 			margin-left: 5px;
 			margin-right: 5px;
+			padding:10px;
 			font-family: 'Noto Sans TC', sans-serif;
 			font-size: 14px;
 		}
 		.akb_iframe{
-			
+			position: absolute;
+			background: #C3D3D6;
 			z-index: 2;
 		}
 		
 	</style>
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="https://malsup.github.com/jquery.form.js"></script> 
+	<script>
+		
+		function hotpost() { 	
+			$.post('http://localhost:3000/', {}, function(data){
+			//console.log(data);
+				//產生文章
+				for (i=0;i<data.length;i++){
+				
+				console.log(data[i]);
+				var post = document.createElement("div");
+					post.setAttribute('class','post');
+					post.setAttribute('id','post_'+i	);
+				
+					document.getElementById('main').appendChild(post);	
+					
+					var forumName = document.createElement("div");
+					forumName.innerHTML = data[i].forumName;
+					forumName.setAttribute('class','forumName');
+					
 	
-		
-		
-		<script>
-		  (adsbygoogle = window.adsbygoogle || []).push({
-			google_ad_client: "ca-pub-8048827950696941",
-			enable_page_level_ads: true
-		  });
-		</script>
-				<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136752565-1"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-
-		  gtag('config', 'UA-136752565-1');
-		</script>
-
-		
-		
-		<script>
-		
-		var ad =document.querySelector(".akb_iframe");
-		
-		
-			
-		var flag = true;	
-			
-		function returngossiping() {  
-			
-			
-			if(flag == true){
-					flag = false;
-			
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-		
-			
-			
-			// jquery 表单提交  
-			$("#showgossiping").ajaxSubmit(function(message) {  
-				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				
-				$.post('https://submitdemo.herokuapp.com/gossiping', {}, function(data){
-					console.log(data);
 					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
 					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
 						
+					var gender = document.createElement("span");
+					
+					if (data[i].gender == 'F') {
+						gender.innerHTML = '女';
+					}
+					if (data[i].gender == 'B') {
+						gender.innerHTML = '男';
+					}
+					if (data[i].gender == 'D') {
+						gender.innerHTML = '客服小天使';
+					}
+					//gender.innerHTML = data[i].gender;
+					gender.setAttribute('class','gender');
+					document.getElementById('post_'+i).appendChild(gender);
+					
+					
 					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
+					title.innerHTML = data[i].title;
 					title.setAttribute('class','title');
-										
 					document.getElementById('post_'+i).appendChild(title);	
-						
+					
+					var briefcontent = document.createElement("div");
+					briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
+					briefcontent.setAttribute('class','briefcontent');
+					document.getElementById('post_'+i).appendChild(briefcontent);
+					
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
+					makelink.setAttribute('action','http://localhost:3000/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
+					makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);	
+					post.appendChild(makelink);	
+					
 					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
 						
 					makelink.setAttribute('onsubmit', goto);
@@ -269,807 +291,29 @@
 					
 					premore.setAttribute('name','name');
 						
-					premore.setAttribute('value',data[j].link);	
+					premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);		
 					
 					makelink.appendChild(premore);		
-						
-						
+					
 					var more = document.createElement("input");
 					more.setAttribute('class','more')
 					more.setAttribute('type','submit');
 					
 					//more.setAttribute('name','name');
 						
-					more.setAttribute('value',data[j].link);	
+					more.setAttribute('value',"More...");	
 					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
 					
-					count.innerHTML = data[j].count;
-						
-					count.setAttribute('class','count');
-					if(data[j].count === ""){
-					count.setAttribute('style','visibility:hidden');
-					}	
-						
-					title.appendChild(count);		
-					}
-					document.getElementById('nextboard').setAttribute('value','gossiping');
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					console.log("set");
+					makelink.appendChild(more);	
 					
-					flag = true;
-				});
-				
-				
-				
-			});  
-			}
-			
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-			
-		}  
-		
-		function returnbeauty() {  
-			if(flag == true){
-				flag = false;
-			
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-			
-			// jquery 表单提交  
-			$("#showbeauty").ajaxSubmit(function(message) {  
-			
-				
-				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/beauty', {}, function(data){
-					console.log(data);
-					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
-					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-						
-					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
-					title.setAttribute('class','title');
-										
-					document.getElementById('post_'+i).appendChild(title);	
-						
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(premore);		
-						
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
-					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
-						
-					if(data[j].count === ""){
-					count.setAttribute('style','visibility:hidden');
-					}	
-						
-					title.appendChild(count);			
-					
-					document.getElementById('nextboard').setAttribute('value','beauty');
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					console.log("set");
-				
-					flag = true;
-					
-						
-					}
-					
-					
-				});
-				
-			});  
-
-		
-			}
-			
-			  
-
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}
-		
-	
-		function returnmovie() {  
-			if(flag == true){
-				flag = false;
-				
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-			
-			// jquery 表单提交  
-			$("#showmovie").ajaxSubmit(function(message) {  
-				
-				
-				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/movie', {}, function(data){
-					console.log(data);
-					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
-					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-						
-					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
-					title.setAttribute('class','title');
-										
-					document.getElementById('post_'+i).appendChild(title);	
-						
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(premore);		
-						
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
-					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
-						
-					if(data[j].count === ""){
-					count.setAttribute('style','visibility:hidden');
-					}	
-						
-					title.appendChild(count);		
-						
-						
-					document.getElementById('nextboard').setAttribute('value','movie');
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					console.log("set");
-						
-				
-					flag = true;
-				
-					}
-					
-				
-				});
-				
-			
-			});  
-
-		
-			
-			  }
-
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}
-		
-		function returnEAseries() {  
-				if(flag == true){
-					flag = false;
-				
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-			
-			// jquery 表单提交  
-			$("#showEAseries").ajaxSubmit(function(message) {  
-				
-			
-				
-				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/EAseries', {}, function(data){
-					console.log(data);
-					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
-					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-						
-					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
-					title.setAttribute('class','title');
-										
-					document.getElementById('post_'+i).appendChild(title);	
-						
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(premore);		
-						
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
-					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
-						
-					if(data[j].count === ""){
-					count.setAttribute('style','visibility:hidden');
-					}	
-						
-					title.appendChild(count);	
-						
-						
-					document.getElementById('nextboard').setAttribute('value','EAseries');
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					console.log("set");
-							
-			
-					flag = true;
-				
-					}
-					
-				
-				});
-				
-			});  
-
-		
-			}
-			
-			  
-
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}
-		
-			
-		function returntechjob() {  
-				if(flag == true){
-					flag = false;
-				
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-			
-			// jquery 表单提交  
-			$("#showtechjob").ajaxSubmit(function(message) {  
-				
-			
-				
-				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/techjob', {}, function(data){
-					console.log(data);
-					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
-					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-						
-					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
-					title.setAttribute('class','title');
-										
-					document.getElementById('post_'+i).appendChild(title);	
-						
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(premore);		
-						
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
-					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
-						
-					if(data[j].count === ""){
-					count.setAttribute('style','visibility:hidden');
-					}	
-						
-					title.appendChild(count);	
-						
-						
-						
-						
-					document.getElementById('nextboard').setAttribute('value','tech_job');
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					
-						
-				
-					flag = true;
-				
-					}
-					
-				
-				});
-				
-			
-			});  
-
-		
-			}
-			  
-
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}	
-		
-		function returnboygirl() {  
-			if(flag == true){
-					flag = false;
-				
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-			
-			// jquery 表单提交  
-			$("#showboygirl").ajaxSubmit(function(message) {  
-				
-				
-				  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				$.post('https://submitdemo.herokuapp.com/boygirl', {}, function(data){
-					console.log(data);
-					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
-					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-						
-					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
-					title.setAttribute('class','title');
-										
-					document.getElementById('post_'+i).appendChild(title);	
-						
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(premore);		
-						
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
-					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
-						
-					if(data[j].count === ""){
-					count.setAttribute('style','visibility:hidden');
-					}	
-						
-					title.appendChild(count);	
-						
-						
-					document.getElementById('nextboard').setAttribute('value','boy-girl');
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					console.log("set");
-				
-					flag = true;
-				
-					}
-					
-				
-				});
-				
-			
-			});  
-
-		}
-			
-			  
-
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}	
-			
-			
-			
-		function returnboard(board) {  
-			
-				if(flag == true){
-					flag = false;
-					
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-			
-			// jquery 表单提交  
-			$("#show"+board).ajaxSubmit(function(data) {  
-					  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				
-					console.log(data);
-					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
-					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-						
-					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
-					title.setAttribute('class','title');
-										
-					document.getElementById('post_'+i).appendChild(title);	
-						
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(premore);		
-						
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
-					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
-						
-					
-					title.appendChild(count);		
-					
-					}
-					document.getElementById('nextboard').setAttribute('value',document.getElementById('foruser').value);
-					console.log(document.getElementById('nextboard').setAttribute('value',document.getElementById('foruser').value))
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					console.log("set");
-					flag = true;
-				
-			});
-			}
-
-		 
-
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}
-		
-		function returnnextpage() {  
-			
-				if(flag == true){
-					flag = false;
-					
-			var myNode = document.getElementById("main");
-			myNode.innerHTML = '';
-			
-			// jquery 表单提交  
-			$("#shownextpage").ajaxSubmit(function(data) {  
-					  // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容  
-					//window.location = 'http://127.0.0.1:58153/index.html';
-				console.log("submit");
-				
-					console.log(data);
-					
-					for (i=0;i<data.length;i++){
-						
-					j=-i+data.length-1;
-					
-											
-					var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-						
-					var title = document.createElement("div");
-					title.innerHTML = data[j].title;
-					title.setAttribute('class','title');
-										
-					document.getElementById('post_'+i).appendChild(title);	
-						
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://submitdemo.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',data[j].link);	
-						
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(premore);		
-						
-						
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',data[j].link);	
-					
-					makelink.appendChild(more);		
-						
-					var author = document.createElement("div");
-					author.innerHTML = data[j].author;
-					author.setAttribute('class','author');
-						
-					//document.body.insertBefore(post, currentDiv); 
-					document.getElementById('post_'+i).appendChild(author);	
-						
-					var count = document.createElement("div");
-					count.innerHTML = data[j].count;
-					count.setAttribute('class','count');
-						
-					
-					title.appendChild(count);		
-					
-					}
-					
-					document.getElementById('nextpage').setAttribute('value',data[0].nowpage-1);
-					flag = true;
-				
-			});
-			}
-
-		 
-
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}
-		
-		function linkify(text) {
-			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-			return text.replace(urlRegex, function(url) {
-				if(url.match('jpg')){
-					return '<a href="' + url + '" target="_blank">' + url + '</a>';
-					//'<a href="' + url + '">' + url + '</a>';
-					
-					
-				}else {
-					return '<a href="' + url + '" target="_blank">' + url + '</a>';
 				}
-				
-			});
-		}
+			}
+				 
+		)};
 		
 		
+		
+							   
 		function returnpost(id){
 			console.log(id);
 			
@@ -1086,28 +330,27 @@
 			
 			$("#" + id).ajaxSubmit(function(message) {  
 				
-				var author = document.createElement("div");
+				var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+				console.log(message);
+				
+				var postcontenttitle = document.createElement("pre");
+				postcontenttitle.setAttribute('class','postcontenttitle')
+					
 				
 				
 				var postcontent = document.createElement("pre");
+				var postcontenttime = document.createElement("pre");
 				
-				var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+				postcontenttitle.innerHTML = message.title;
 				
-				
-				
-				
-				
-				var firstLine = message[0].content.split('\n')[0];
-				var time = firstLine.split('時間')[1];
-				var title = firstLine.split('時間')[0].split('標題')[1];
-				var board = firstLine.split('時間')[0].split('標題')[0].split('看板')[1];
-				var au = firstLine.split('時間')[0].split('標題')[0].split('看板')[0].split('作者')[1];
+				postcontenttime.innerHTML= message.updatedAt;
 				
 				
-				postcontent.innerHTML = linkify(message[0].content.replace(au,au+'\n').replace(title,title+'\n').replace(time,time+'\n').replace(board,board+'\n'));
+				postcontent.innerHTML = linkify(message.content);
+				content.appendChild(postcontenttitle);
 				
-			
-				content.appendChild(author);
+				content.appendChild(postcontenttime);
+				
 				content.appendChild(postcontent);
 				
 				
@@ -1116,74 +359,41 @@
 			
 			
 			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}
+		}	
+		
 		function closepost(){
 			document.getElementById('contentpost').remove();
 			
 		}
+		
 			
-			
-			
+		function linkify(text) {
+			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+			return text.replace(urlRegex, function(url) {
+				if(url.match('jpg')){
+					return '<a href="'+url+'">' + url + '<br></a><img src="' + url + '" ></img>';
+					//'<a href="' + url + '">' + url + '</a>';
+					
+					
+				}else {
+					return '<a href="' + url + '" target="_blank">' + url + '</a>';
+				}
+				
+			});
+		}
+		
+		
 	</script>
+</head>
+<body onload="hotpost()">
+	
+	
+	<div  id='main'>
 		
-		</head>
-  <body onload="return returngossiping()">
-	  
-	  
-	  <div id='boardswitch'>
-		  
-		  
-		<form action="https://submitdemo.herokuapp.com/gossiping" id="showgossiping" method="POST" onsubmit="return returngossiping()" >
-		 <button class="btn" id="gossiping">八卦</button>		
-		 </form>
-		  
-		<form action="https://submitdemo.herokuapp.com/beauty" id="showbeauty" method="POST" onsubmit="return returnbeauty()">
-		 <button type="submit" class="btn" id="beauty">表特</button>
-		</form>
-		  
-		<form action="https://submitdemo.herokuapp.com/movie" id="showmovie" method="POST" onsubmit="return returnmovie()">
-		 <button type="submit" class="btn" id="movie">電影</button>
-		</form>  
-			
-		<form action="https://submitdemo.herokuapp.com/techjob " id="showtechjob" method="POST" onsubmit="return returntechjob()">
-		 <button type="submit" class="btn" id="techjob">科技業</button>
-		</form> 
+		<div class="post" id='board'>看板
+	</div>
 		
-		<form action="https://submitdemo.herokuapp.com/boygirl " id="showboygirl" method="POST" onsubmit="return returnboygirl()">
-		 <button type="submit" class="btn" id="boygirl">男女</button>
-		</form> 	
-			
-		<form action="https://submitdemo.herokuapp.com/EAseries " id="showEAseries" method="POST" onsubmit="return returnEAseries()">
-		 <button type="submit" class="btn" id="EAseries">美劇</button>
-		</form>  
-		
-		  <form action="https://submitdemo.herokuapp.com/board" id="showsex" method="POST" onsubmit="return returnboard('sex')" name='name' value='123'>
-					<input type="text" class="btn" id='foruser' name="board" value='請輸入看板英文名' style="background:#C3D3D6">
-					<input type="submit" class="btn"  value='GO!'>
-				</form>
-		
-		
-	  </div>  
-	  
-		<div id='main'>
-		  
-		</div>
-	   
-	  	<script language="javascript">
-pad_width=300;
-pad_height=250;
-pad_customerId="PFBC20190325001";
-pad_positionId="PFBP201903250001C";
-</script>
-		<script id="pcadscript" language="javascript" src="https://kdpic.pchome.com.tw/img/js/xpcadshow.js"></script>
-	  <a href="http://justfortdemo.tk/" target="_blank" title="http://justfortdemo.tk/">網站移動中...</a>
-	  			<form action="https://submitdemo.herokuapp.com/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name='name' value='123'>
-					<input type="text"  id="nextpage" name="name" value='Next' style="visibility:hidden">
-					<input type="text"  id="nextboard" name="board" value='' style="visibility:hidden">
-					<input type="submit"  id="nextpage" value='下一頁'>
-				</form>
-	  
-	  		
-		  
-  </body>
+	</div>
+	
+</body>
 </html>
