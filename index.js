@@ -20,8 +20,8 @@ var post = [];
 var content= []; 
 
 app.post('/', (appreq, appres) => {
-	//var url = "https://www.dcard.tw/_api/forums/sex/posts?popular=true";
-	var url = "https://dcard.tw/_api/posts?popular=true";
+	var url = "https://www.dcard.tw/_api/forums/sex/posts?popular=true";
+	//var url = "https://dcard.tw/_api/posts?popular=true";
 	request({url: url}, (err, res, body) => {
 		var $ = cheerio.load(body)
 		// 抓取文章列表

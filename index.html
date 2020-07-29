@@ -225,7 +225,12 @@
 	<script>
 		
 		function hotpost() { 	
-			$.post('http://localhost:3000/', {}, function(data){
+			
+			//https://dsmc-kh.herokuapp.com/
+			//https://dsmc-kh.herokuapp.com/
+			
+			
+			$.post('https://dsmc-kh.herokuapp.com/', {}, function(data){
 			//console.log(data);
 				//產生文章
 				for (i=0;i<data.length;i++){
@@ -272,7 +277,7 @@
 					document.getElementById('post_'+i).appendChild(briefcontent);
 					
 					var makelink = document.createElement("form");
-					makelink.setAttribute('action','http://localhost:3000/post');
+					makelink.setAttribute('action','https://dsmc-kh.herokuapp.com/post');
 					makelink.setAttribute('method','POST');	
 					makelink.setAttribute('id','POSTform_' +i);	
 					makelink.setAttribute('name','name');
