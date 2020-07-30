@@ -1,404 +1,645 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>DSMC</title>
-	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-	<head>
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
-	<style>
-		
-		body{
-			background-color:#092E49;
+    <head>
+        <title>DSMC</title>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet" />
+        <style>
+            body {
+                background-color: #092e49;
+
+                font-size: 12px;
+                font-family: "Noto Sans TC", sans-serif;
+            }
+            #board {
+                font-size: 20px;
+                padding: 5px;
+                border-radius: 0px;
+            }
+
+            #nextpage {
+                font-family: "Noto Sans TC", sans-serif;
+                position: fixed;
+                background-color: #abd2d9;
+                width: 60px;
+                height: 40px;
+                left: 50%;
+                bottom: 10px;
+                margin: 0 0 0 -20px;
+
+                padding: 0px;
+                border: 0;
+                color: black !important;
+            }
+            #nextpage:hover {
+                background-color: #7398aa;
+                color: black !important;
+            }
+            #forum {
+                position: fixed;
+                margin: 0 0 0 -160px;
+                width: 100px;
+                bottom: 60px;
+                top: 140px;
+                border-radius: 0px;
+                overflow-x: auto;
+            }
+            #main {
+                background-color: #f5f5f5;
+                border-style: solid;
+                border-width: medium;
+                position: fixed;
+                left: 50%;
+                margin: 0 0 0 -300px;
+                width: 700px;
+                bottom: 60px;
+                top: 80px;
+                border-radius: 0px;
+                overflow-x: auto;
+                padding: 50px;
+            }
+		  
+		 .forumname {
+			 
+			 
+		  }
+
+            .btn {
+                font-family: "Noto Sans TC", sans-serif;
+                border: 0px;
+                font-size: 16px;
+                background-color: #7bbfc8;
+                text-align: center;
+                color: black;
+                border-radius: 25px;
+                margin: 4px;
+                padding-left: 10px;
+		    padding-right: 10px;
+		    padding-top: 5px;
+		    padding-bottom: 5px;
+                float: left;
+            }
+            .btn:hover {
+                background-color: #7398aa;
+            }
+
+            .post {
+                background-color: #f5f5f5;
+                border-bottom-style: solid;
+                margin: 0 auto;
+                border-radius: 0px;
+                padding: 5px;
+            }
+            .line {
+                background-color: #f5f5f5;
+                border-bottom-style: solid;
+                margin: 0 auto;
+                padding: 40px;
+                border-radius: 0px;
+            }
+
+            .gender {
+                font-weight: 500;
+                font-size: 14px;
+                padding: 5px;
+                border-radius: 0px;
+            }
+
+            .title {
+                font-weight: 500;
+                font-size: 18px;
+                background-color: #abd2d9;
+                padding: 5px;
+                border-radius: 0px;
+            }
+            .briefcontent {
+                font-size: 14px;
+                padding: 5px;
+                border-radius: 0px;
+            }
+
+            .author {
+                font-size: 12px;
+                padding-top: 4px;
+                padding-left: 5px;
+                width: auto;
+                color: white;
+            }
+            .count {
+                font-size: 10px;
+                background-color: gainsboro;
+                margin-top: -22px;
+                right: 14px;
+                position: absolute;
+                text-align: center;
+                padding: 2px;
+                width: 20px;
+                height: 20px;
+            }
+            .more {
+                font-family: "Noto Sans TC", sans-serif;
+                font-size: 10px;
+                margin-bottom: 3px;
+                border: 5px;
+                color: #14396a !important;
+                border-radius: 10px;
+            }
+
+            .more:hover {
+                color: #14396a !important;
+                background: #c3d3d6;
+            }
+
+            .premore {
+                position: fixed;
+                visibility: hidden;
+            }
+            #contentpost {
+                position: fixed;
+                width: 1000px;
+                height: 80%;
+                overflow-x: auto;
+                background-color: #f5f5f5;
+                padding: 5px;
+                top: 100px;
+                left: 50%;
+                margin: -48px 0 0 -414px;
+                border-radius: 0px;
+                border-style: solid;
+                border-width: 2px;
+                z-index: 2;
+            }
+
+            img {
+                display: block;
+                max-width: 500px;
+                max-height: 500px;
+                width: auto;
+                height: auto;
+            }
+
+            #closebtn {
+                position: fixed;
+		    font-weight:500;
+                border: 0;
+                background: #c3d3d6;
+                color: #14396a;
+                left: 50%;
+                width: 50px;
+                height: 30px;
+                margin: 0 0 0 520px;
+                border-radius: 10px;
+                font-family: "Noto Sans TC", sans-serif;
+                z-index: 2;
+            }
+
+            .postcontenttitle {
+                font-weight: 500;
+                font-size: 18px;
+                padding: 10px;
+                border-radius: 0px;
+            }
+
+            #closebtn:hover {
+                color: white;
+                background: #7398aa;
+            }
+            pre {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                margin-left: 5px;
+                margin-right: 5px;
+                padding: 10px;
+                font-family: "Noto Sans TC", sans-serif;
+                font-size: 14px;
+            }
+            .akb_iframe {
+                position: absolute;
+                background: #c3d3d6;
+                z-index: 2;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+        <script src="https://malsup.github.com/jquery.form.js"></script>
+        <script>
+
+            function hotpost() {
+			$("#board").empty();
 			
-			font-size: 12px;
-			font-family: 'Noto Sans TC', sans-serif;
-		}
-		#board{
-			font-size: 20px;
-			padding: 5px;
-			border-radius:0px;
-		}
-		
-		#nextpage{
-			font-family: 'Noto Sans TC', sans-serif;
-			position: fixed;;
-			background-color: #ABD2D9;
-			width: 60px;
-			height: 40px;
-			left: 50%;
-			bottom: 10px;
-			margin:0 0 0 -20px;
+					var mainboard = document.createElement("div");
+					mainboard.innerHTML = "熱門文章"
+					mainboard.setAttribute('class','post');
+					document.getElementById('board').appendChild(mainboard);
+			$("#showhotpost").ajaxSubmit(function(message) {
+
+				
 			
-			padding: 0px;
-			border:0;
-			color: black !important;
+				
+            	//http://localhost:3000/
+            	//http://localhost:3000/
+					$.post('http://localhost:3000/hotpost', {}, function(data){
+
+					//產生文章
+					for (i=0;i<data.length;i++){
+
+					//console.log(data[i]);
+					var post = document.createElement("div");
+						post.setAttribute('class','post');
+						post.setAttribute('id','post_'+i	);
+
+						document.getElementById('board').appendChild(post);
+						
+						
+						var postimformation = document.createElement("div");
+						postimformation.setAttribute('class','postimformation');
+						document.getElementById('post_'+i).appendChild(postimformation);
+
+
+
+						var forumName = document.createElement("div");
+						forumName.innerHTML = data[i].forumName;
+						forumName.setAttribute('class','forumName');
+						postimformation.appendChild(forumName);
+
+
+						var gender = document.createElement("div");
+
+						if (data[i].gender == 'F') {
+							gender.innerHTML = '女';
+						}
+						if (data[i].gender == 'M') {
+							gender.innerHTML = '男';
+						}
+						if (data[i].gender == 'D') {
+							gender.innerHTML = '客服小天使';
+						}
+						//gender.innerHTML = data[i].gender;
+						gender.setAttribute('class','gender');
+						postimformation.appendChild(gender);
+						
+						var title = document.createElement("div");
+						title.innerHTML = data[i].title;
+						title.setAttribute('class','title');
+						document.getElementById('post_'+i).appendChild(title);
+
+						var briefcontent = document.createElement("div");
+						briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
+						briefcontent.setAttribute('class','briefcontent');
+						document.getElementById('post_'+i).appendChild(briefcontent);
+
+						var makelink = document.createElement("form");
+						makelink.setAttribute('action','http://localhost:3000/post');
+						makelink.setAttribute('method','POST');
+						makelink.setAttribute('id','POSTform_' +i);
+						makelink.setAttribute('name','name');
+						makelink.setAttribute('value',data[i].id);
+						//makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+						post.appendChild(makelink);
+
+						var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+
+						makelink.setAttribute('onsubmit', goto);
+
+						post.appendChild(makelink);
+
+						var premore = document.createElement("input");
+						premore.setAttribute('class','premore')
+						premore.setAttribute('type','text');
+
+						premore.setAttribute('name','name');
+
+						premore.setAttribute('value',data[i].id);		//premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+						makelink.appendChild(premore);
+
+						var more = document.createElement("input");
+						more.setAttribute('class','more')
+						more.setAttribute('type','submit');
+
+						//more.setAttribute('name','name');
+
+						more.setAttribute('value',"More...");
+
+
+						makelink.appendChild(more);
+
+					}
+				
+					
+				});
+			});
+            	
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
 		}
-		#nextpage:hover{
+		    function sex() {
+			$("#board").empty();
 			
-			background-color: #7398AA;
-		    color: black !important;
+					var mainboard = document.createElement("div");
+					mainboard.innerHTML = "西斯"
+					mainboard.setAttribute('class','post');
+					document.getElementById('board').appendChild(mainboard);
+			    	$("#showhotpost").ajaxSubmit(function(message) {
+
+				
+			
+				
+            	//http://localhost:3000/
+            	//http://localhost:3000/
+					$.post('http://localhost:3000/sex', {}, function(data){
+
+					//產生文章
+					for (i=0;i<data.length;i++){
+
+					//console.log(data[i]);
+					var post = document.createElement("div");
+						post.setAttribute('class','post');
+						post.setAttribute('id','post_'+i	);
+
+						document.getElementById('board').appendChild(post);
+
+						var forumName = document.createElement("div");
+						forumName.innerHTML = data[i].forumName;
+						forumName.setAttribute('class','forumName');
+						
+
+						var gender = document.createElement("span");
+
+						if (data[i].gender == 'F') {
+							gender.innerHTML = '女';
+						}
+						if (data[i].gender == 'M') {
+							gender.innerHTML = '男';
+						}
+						if (data[i].gender == 'D') {
+							gender.innerHTML = '客服小天使';
+						}
+						//gender.innerHTML = data[i].gender;
+						gender.setAttribute('class','gender');
+						document.getElementById('post_'+i).appendChild(gender);
+					
+
+						var title = document.createElement("div");
+						title.innerHTML = data[i].title;
+						title.setAttribute('class','title');
+						document.getElementById('post_'+i).appendChild(title);
+
+						var briefcontent = document.createElement("div");
+						briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
+						briefcontent.setAttribute('class','briefcontent');
+						document.getElementById('post_'+i).appendChild(briefcontent);
+
+						var makelink = document.createElement("form");
+						makelink.setAttribute('action','http://localhost:3000/post');
+						makelink.setAttribute('method','POST');
+						makelink.setAttribute('id','POSTform_' +i);
+						makelink.setAttribute('name','name');
+						makelink.setAttribute('value',data[i].id);
+						//makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+						post.appendChild(makelink);
+
+						var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+
+						makelink.setAttribute('onsubmit', goto);
+
+						post.appendChild(makelink);
+
+						var premore = document.createElement("input");
+						premore.setAttribute('class','premore')
+						premore.setAttribute('type','text');
+
+						premore.setAttribute('name','name');
+
+						premore.setAttribute('value',data[i].id);		//premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+						makelink.appendChild(premore);
+
+						var more = document.createElement("input");
+						more.setAttribute('class','more')
+						more.setAttribute('type','submit');
+
+						//more.setAttribute('name','name');
+
+						more.setAttribute('value',"More...");
+
+
+						makelink.appendChild(more);
+
+					}
+				
+					
+				});
+			});
+            	
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
 		}
-		
-		#main{
+		  
+		   function animal_crossing() {
+			$("#board").empty();
 			
-			background-color:#F5F5F5;
-			border-style:solid;
-    			border-width:medium;
-			position: fixed;
-			left: 50%;
-			margin:0 0 0 -400px;
-			width: 700px;
-			bottom: 60px;
-			top:80px;
-			border-radius:0px;
-			overflow-x: auto;
-			padding: 50px;
+					var mainboard = document.createElement("div");
+					mainboard.innerHTML = "動物森友會"
+					mainboard.setAttribute('class','post');
+					document.getElementById('board').appendChild(mainboard);
+			    	$("#showhotpost").ajaxSubmit(function(message) {
+
+				
+			
+				
+            	//http://localhost:3000/
+            	//http://localhost:3000/
+					$.post('http://localhost:3000/animal_crossing', {}, function(data){
+
+					//產生文章
+					for (i=0;i<data.length;i++){
+
+					console.log(data[i]);
+					var post = document.createElement("div");
+						post.setAttribute('class','post');
+						post.setAttribute('id','post_'+i	);
+
+						document.getElementById('board').appendChild(post);
+
+						var forumName = document.createElement("div");
+						forumName.innerHTML = data[i].forumName;
+						forumName.setAttribute('class','forumName');
+						
+
+						var gender = document.createElement("span");
+
+						if (data[i].gender == 'F') {
+							gender.innerHTML = '女';
+						}
+						if (data[i].gender == 'M') {
+							gender.innerHTML = '男';
+						}
+						if (data[i].gender == 'D') {
+							gender.innerHTML = '客服小天使';
+						}
+						//gender.innerHTML = data[i].gender;
+						gender.setAttribute('class','gender');
+						document.getElementById('post_'+i).appendChild(gender);
+					
+
+						var title = document.createElement("div");
+						title.innerHTML = data[i].title;
+						title.setAttribute('class','title');
+						document.getElementById('post_'+i).appendChild(title);
+
+						var briefcontent = document.createElement("div");
+						briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
+						briefcontent.setAttribute('class','briefcontent');
+						document.getElementById('post_'+i).appendChild(briefcontent);
+
+						var makelink = document.createElement("form");
+						makelink.setAttribute('action','http://localhost:3000/post');
+						makelink.setAttribute('method','POST');
+						makelink.setAttribute('id','POSTform_' +i);
+						makelink.setAttribute('name','name');
+						makelink.setAttribute('value',data[i].id);
+						//makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+						post.appendChild(makelink);
+
+						var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+
+						makelink.setAttribute('onsubmit', goto);
+
+						post.appendChild(makelink);
+
+						var premore = document.createElement("input");
+						premore.setAttribute('class','premore')
+						premore.setAttribute('type','text');
+
+						premore.setAttribute('name','name');
+
+						premore.setAttribute('value',data[i].id);		//premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+						makelink.appendChild(premore);
+
+						var more = document.createElement("input");
+						more.setAttribute('class','more')
+						more.setAttribute('type','submit');
+
+						//more.setAttribute('name','name');
+
+						more.setAttribute('value',"More...");
+
+
+						makelink.appendChild(more);
+
+					}
+				
+					
+				});
+			});
+            	
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
 		}
-		
-	
-		.btn{
-			font-family: 'Noto Sans TC', sans-serif;
-			border: 0px;
-			font-size: 16px;
-			background-color: #7BBFC8;
-			text-align: center;
-			color:black;
-			border-radius:0px;
-			margin:4px;
-			padding: 5px;
-			float: left;
-		}
-		.btn:hover{
-			background-color: #7398AA;
-		}
-		
-		.post{
+		  
+		     
+
+
+            function returnpost(id){
+            	console.log(id);
+
+            	var content = document.createElement("div");
+            		content.setAttribute('id','contentpost');
+            		document.querySelector('body').appendChild(content);
+            	var closebtn = document.createElement("button");
+            		closebtn.setAttribute('id','closebtn');
+            		closebtn.setAttribute('onclick','closepost()');
+            		closebtn.innerHTML = 'Close';
+
+            		content.appendChild(closebtn);
+
+
+            	$("#" + id).ajaxSubmit(function(message) {
+            		var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+
+            		var postcontenttitle = document.createElement("pre");
+            		postcontenttitle.setAttribute('class','postcontenttitle')
+
+            		console.log(message);
+
+            		var postcontent = document.createElement("pre");
+            		var postcontenttime = document.createElement("pre");
+
+            		postcontenttitle.innerHTML = message.content1.title;
+
+            		postcontenttime.innerHTML= message.content1.updatedAt;
+
+
+            		postcontent.innerHTML = linkify(message.content1.content);
+            		content.appendChild(postcontenttitle);
+
+            		content.appendChild(postcontenttime);
+
+            		content.appendChild(postcontent);
+
+            		var line = document.createElement("div");
+            		line.setAttribute('class','line')
+            		content.appendChild(line);
+
+            		for (j=0;j<message.content2.length;j++){
+
+            			if (message.content2[j].content != undefined){
+
+            			var content2 = document.createElement("pre");
+            			content2.innerHTML=linkify(message.content2[j].content);
+            			content2.setAttribute("class",'post')
+            			content.appendChild(content2);
+            			}
+
+            		}
+
+
+
+
+            	});
+
+
+            	return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
+
+            function closepost(){
+            	document.getElementById('contentpost').remove();
+
+            }
+
+
+            function linkify(text) {
+            	var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+            	return text.replace(urlRegex, function(url) {
+            		if(url.match('jpg')){
+            			return '<a href="'+url+'">' + url + '<br></a><img src="' + url.replace("/.i/","/") + '" ></img>';
+            			//'<a href="' + url + '">' + url + '</a>';
+
+
+            		}else {
+            			return '<a href="' + url + '" target="_blank">' + url + '</a>';
+            		}
+
+            	});
+            }
+        </script>
+    </head>
+    <body onload="hotpost()">
+        <div id="main">
+            <div id="forum">
+                <form action="http://localhost:3000/hotpost" id="showhotpost" method="POST" onsubmit="return hotpost()">
+                    <button class="btn">熱門文章</button>
+                </form>
 			
-			background-color:#F5F5F5;
-			border-bottom-style: solid;
-			margin:0 auto; 
-			border-radius:0px;
+			 <form action="http://localhost:3000/animal_crossing" id="showanimal_crossing" method="POST" onsubmit="return animal_crossing()">
+                    <button class="btn">動森</button>
+                </form>
+			  <form action="http://localhost:3000/sex" id="showsex" method="POST" onsubmit="return sex()">
+                    <button class="btn">西斯</button>
+                </form>
 			
-			
-		}
-		
-		
-		.gender{
-			font-weight: 500;
-			font-size: 14px;
-			padding: 5px;
-			border-radius:0px;
-		}
-		
-		.title{
-			font-weight: 500;
-			font-size: 18px;
-			background-color: #ABD2D9;
-			padding: 5px;
-			border-radius:0px;
-			
-		}
-		.briefcontent{
-			font-size: 14px;
-			padding: 5px;
-			border-radius:0px;
-		}
-		
-		
-		.author{
-			font-size: 12px;
-			padding-top: 4px;
-			padding-left: 5px;
-			width: auto;
-			color:white;
-			
-		}
-		.count{
-			font-size: 10px;
-			background-color:gainsboro;
-			margin-top: -22px;
-			right: 14px;
-			position: absolute;
-			text-align: center;
-			padding: 2px;
-			width: 20px;
-			height:20px;
-			
-		}
-		.more{
-			font-family: 'Noto Sans TC', sans-serif;
-			font-size: 10px;
-			margin-bottom:3px;
-			border:5px;
-			color: #14396a !important;
-			border-radius: 10px;
-			  
-			
-		}
-		
-		.more:hover {
-			
-			color: #14396a !important;
-			background: #C3D3D6;
-		 
-		}
-		
-		.premore{
-			
-		
-			position: fixed;
-			visibility: hidden;
-			
-		}	
-		#contentpost{
-			position: fixed;
-			width: 800px;
-			height: 75%;
-			overflow-x: auto;
-			background-color: gainsboro;
-			padding: 5px;
-			top:100px;
-			left:50%;
-			margin: -48px 0 0 -404px;
-			border-radius:0px;
-			border-style:solid;
-			border-width:2px;
-			z-index: 2;
-			
-			
-		}
-		
-		img {
-			display: block;
-			max-width:500px;
-			max-height:500px;
-			width: auto;
-			height: auto;
 		   
-		}
-		
-		#closebtn{
-			position: fixed;
-			border:0;
-			background: #C3D3D6;
-		  	color: #14396a;
-			left:50%;
-			width: 50px;
-			height: 30px;
-			margin: 0 0 0 320px;
-			border-radius: 0px;
-			font-family: 'Noto Sans TC', sans-serif;
-			z-index: 2;
-			
-		}
-		
-		.postcontenttitle{
-			font-weight: 500;
-			font-size: 18px;
-			padding: 10px;
-			border-radius:0px;
-		}
-		
-		
-		#closebtn:hover {
-			color: white;
-		  	background: #7398AA;
-		}
-		pre {
-			margin-top: 0px;
-			margin-bottom: 0px;
-			margin-left: 5px;
-			margin-right: 5px;
-			padding:10px;
-			font-family: 'Noto Sans TC', sans-serif;
-			font-size: 14px;
-		}
-		.akb_iframe{
-			position: absolute;
-			background: #C3D3D6;
-			z-index: 2;
-		}
-		
-	</style>
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-	<script src="https://malsup.github.com/jquery.form.js"></script> 
-	<script>
-		
-		function hotpost() { 	
-			
-			//https://dsmc-kh.herokuapp.com/
-			//https://dsmc-kh.herokuapp.com/
-			
-			
-			$.post('https://dsmc-kh.herokuapp.com/', {}, function(data){
-			//console.log(data);
-				//產生文章
-				for (i=0;i<data.length;i++){
-				
-				console.log(data[i]);
-				var post = document.createElement("div");
-					post.setAttribute('class','post');
-					post.setAttribute('id','post_'+i	);
-				
-					document.getElementById('main').appendChild(post);	
-					
-					var forumName = document.createElement("div");
-					forumName.innerHTML = data[i].forumName;
-					forumName.setAttribute('class','forumName');
-					
-	
-					
-					
-						
-					var gender = document.createElement("span");
-					
-					if (data[i].gender == 'F') {
-						gender.innerHTML = '女';
-					}
-					if (data[i].gender == 'B') {
-						gender.innerHTML = '男';
-					}
-					if (data[i].gender == 'D') {
-						gender.innerHTML = '客服小天使';
-					}
-					//gender.innerHTML = data[i].gender;
-					gender.setAttribute('class','gender');
-					document.getElementById('post_'+i).appendChild(gender);
-					
-					
-					var title = document.createElement("div");
-					title.innerHTML = data[i].title;
-					title.setAttribute('class','title');
-					document.getElementById('post_'+i).appendChild(title);	
-					
-					var briefcontent = document.createElement("div");
-					briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
-					briefcontent.setAttribute('class','briefcontent');
-					document.getElementById('post_'+i).appendChild(briefcontent);
-					
-					var makelink = document.createElement("form");
-					makelink.setAttribute('action','https://dsmc-kh.herokuapp.com/post');
-					makelink.setAttribute('method','POST');	
-					makelink.setAttribute('id','POSTform_' +i);	
-					makelink.setAttribute('name','name');
-					makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);	
-					post.appendChild(makelink);	
-					
-					var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-						
-					makelink.setAttribute('onsubmit', goto);
-						
-					post.appendChild(makelink);			
-					
-					var premore = document.createElement("input");
-					premore.setAttribute('class','premore')
-					premore.setAttribute('type','text');
-					
-					premore.setAttribute('name','name');
-						
-					premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);		
-					
-					makelink.appendChild(premore);		
-					
-					var more = document.createElement("input");
-					more.setAttribute('class','more')
-					more.setAttribute('type','submit');
-					
-					//more.setAttribute('name','name');
-						
-					more.setAttribute('value',"More...");	
-					
-					
-					makelink.appendChild(more);	
-					
-				}
-			}
-				 
-		)};
-		
-		
-		
-							   
-		function returnpost(id){
-			console.log(id);
-			
-			var content = document.createElement("div");
-				content.setAttribute('id','contentpost');
-				document.querySelector('body').appendChild(content);
-			var closebtn = document.createElement("button");
-				closebtn.setAttribute('id','closebtn');
-				closebtn.setAttribute('onclick','closepost()');
-				closebtn.innerHTML = 'Close';
-				
-				content.appendChild(closebtn);
-			
-			
-			$("#" + id).ajaxSubmit(function(message) {  
-				
-				var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-				console.log(message);
-				
-				var postcontenttitle = document.createElement("pre");
-				postcontenttitle.setAttribute('class','postcontenttitle')
-					
-				
-				
-				var postcontent = document.createElement("pre");
-				var postcontenttime = document.createElement("pre");
-				
-				postcontenttitle.innerHTML = message.title;
-				
-				postcontenttime.innerHTML= message.updatedAt;
-				
-				
-				postcontent.innerHTML = linkify(message.content);
-				content.appendChild(postcontenttitle);
-				
-				content.appendChild(postcontenttime);
-				
-				content.appendChild(postcontent);
-				
-				
-			
-			});
-			
-			
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  
-		}	
-		
-		function closepost(){
-			document.getElementById('contentpost').remove();
-			
-		}
-		
-			
-		function linkify(text) {
-			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-			return text.replace(urlRegex, function(url) {
-				if(url.match('jpg')){
-					return '<a href="'+url+'">' + url + '<br></a><img src="' + url + '" ></img>';
-					//'<a href="' + url + '">' + url + '</a>';
-					
-					
-				}else {
-					return '<a href="' + url + '" target="_blank">' + url + '</a>';
-				}
-				
-			});
-		}
-		
-		
-	</script>
-</head>
-<body onload="hotpost()">
-	
-	
-	<div  id='main'>
-		
-		<div class="post" id='board'>看板
-	</div>
-		
-	</div>
-	
-</body>
+            </div>
+
+            <div id="board"></div>
+        </div>
+    </body>
 </html>
