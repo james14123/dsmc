@@ -19,6 +19,26 @@ var list = [];
 var post = [];
 var content= []; 
 
+app.post('/board', (appreq, appres) => {
+	var url = "https://www.dcard.tw/_api/forums/"+appreq.body.board+"/posts?popular=true";
+	request({url: url}, (err, res, body) => {
+		var $ = cheerio.load(body)
+		// 抓取文章列表
+		//list = $('article > h2 > a> span').map((index, obj) 
+		list = $('body').map((index, obj) => {
+			return {
+				Content: JSON.parse($(obj).text()),
+			}
+				
+		}).get()
+		
+		//console.log("Test: "+list);
+		appres.send(list[0].Content);
+	});
+	
+});
+
+
 app.post('/sex', (appreq, appres) => {
 	var url = "https://www.dcard.tw/_api/forums/sex/posts?popular=true";
 	//var url = "https://dcard.tw/_api/posts?popular=true";
