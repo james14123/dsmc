@@ -23,10 +23,10 @@
                 background-color: #abd2d9;
                 width: 60px;
                 height: 40px;
-                left: 50%;
-                bottom: 10px;
+                left: 55.5%;
+                bottom: 25px;
                 margin: 0 0 0 -20px;
-
+                border-radius: 15px;
                 padding: 0px;
                 border: 0;
                 color: black !important;
@@ -52,22 +52,20 @@
                 left: 50%;
                 margin: 0 0 0 -300px;
                 width: 700px;
-                bottom:80px;
+                bottom: 80px;
                 top: 80px;
                 border-radius: 0px;
                 overflow-x: auto;
                 padding: 50px;
             }
-		  
-		 .forumname {
-			 
-			 
-		  }
-		  
-		  #foruser{
-			  width:150px;
-			  text-align: left;
-			     font-family: "Noto Sans TC", sans-serif;
+
+            .forumname {
+            }
+
+            #foruser {
+                width: 150px;
+                text-align: left;
+                font-family: "Noto Sans TC", sans-serif;
                 border: 0px;
                 font-size: 16px;
                 background-color: #7bbfc8;
@@ -76,12 +74,11 @@
                 border-radius: 25px;
                 margin: 2px;
                 padding-left: 10px;
-		    padding-right: 0px;
-		    padding-top: 5px;
-		    padding-bottom: 5px;
-		  }
-		  
-		  
+                padding-right: 0px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
             .btn {
                 font-family: "Noto Sans TC", sans-serif;
                 border: 0px;
@@ -92,10 +89,9 @@
                 border-radius: 25px;
                 margin: 4px;
                 padding-left: 10px;
-		    padding-right: 10px;
-		    padding-top: 5px;
-		    padding-bottom: 5px;
-             
+                padding-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
             }
             .btn:hover {
                 background-color: #7398aa;
@@ -111,8 +107,10 @@
             .line {
                 background-color: #f5f5f5;
                 border-bottom-style: solid;
+                border-bottom-width: thin;
+                width: 930px;
                 margin: 0 auto;
-                padding: 40px;
+                padding: 20px;
                 border-radius: 0px;
             }
 
@@ -187,6 +185,41 @@
                 border-width: 2px;
                 z-index: 2;
             }
+            #showcatehot {
+                visibility: hidden;
+                float: right;
+                width: 40px;
+                height: 20px;
+                text-align: center;
+                margin-right: 10px;
+                border-radius: 0px;
+
+                border-bottom-style: solid;
+                border-bottom-width: thin;
+            }
+
+            #showcatehot:hover {
+                color: #14396a !important;
+                background: #c3d3d6;
+            }
+
+            #showcatetime {
+                visibility: hidden;
+                float: right;
+                width: 40px;
+                height: 20px;
+                text-align: center;
+                margin-right: 10px;
+                border-radius: 0px;
+
+                border-bottom-style: solid;
+                border-bottom-width: thin;
+            }
+
+            #showcatetime:hover {
+                color: #14396a !important;
+                background: #c3d3d6;
+            }
 
             img {
                 display: block;
@@ -198,7 +231,7 @@
 
             #closebtn {
                 position: fixed;
-		    font-weight:500;
+                font-weight: 500;
                 border: 0;
                 background: #c3d3d6;
                 color: #14396a;
@@ -225,523 +258,849 @@
             pre {
                 margin-top: 0px;
                 margin-bottom: 0px;
-                margin-left: 5px;
-                margin-right: 5px;
+
                 padding: 10px;
                 font-family: "Noto Sans TC", sans-serif;
                 font-size: 14px;
             }
-          
+
+            .content2 {
+                background-color: #f5f5f5;
+                border-bottom-style: solid;
+                border-bottom-width: thin;
+                margin-left: 5px;
+                margin-right: 5px;
+                border-radius: 0px;
+                padding: 10px;
+            }
         </style>
         <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
         <script src="https://malsup.github.com/jquery.form.js"></script>
         <script>
-		  
-		      function returnboard(data) {
-			$("#board").empty();
+            var nextvisibleflag = false;
+
+            function returnnextpage() {
 			
-					var mainboard = document.createElement("div");
-					mainboard.innerHTML = "看板"
-					mainboard.setAttribute('class','post');
-					document.getElementById('board').appendChild(mainboard);
-			    	$("#show"+data).ajaxSubmit(function(data) {  
-				
-					//產生文章
-					for (i=0;i<data.length;i++){
+                $("#board").empty();
 
-					//console.log(data[i]);
-					var post = document.createElement("div");
-						post.setAttribute('class','post');
-						post.setAttribute('id','post_'+i	);
+                var mainboard = document.createElement("div");
 
-						document.getElementById('board').appendChild(post);
+			    document.getElementById("nextcate").value = document.getElementById("foruser").value;
+			//console.log( document.getElementById("nextcate").value);
+			    mainboard.innerHTML = "熱門文章";
+			  	
+                
+                mainboard.setAttribute("class", "post");
+                document.getElementById("board").appendChild(mainboard);
+                $("#shownextpage").ajaxSubmit(function (data) {
+                 //         $.post("http://localhost:3000/next", {}, function (data) {
+           		//console.log(data);
 
-						var forumName = document.createElement("div");
-						forumName.innerHTML = data[i].forumName;
-						forumName.setAttribute('class','forumName');
-						
+                    //產生文章
+                    for (i = 0; i < data.length; i++) {
+                        var post = document.createElement("div");
+                        post.setAttribute("class", "post");
+                        post.setAttribute("id", "post_" + i);
 
-						var gender = document.createElement("span");
+                        document.getElementById("board").appendChild(post);
 
-						if (data[i].gender == 'F') {
-							gender.innerHTML = '女';
-						}
-						if (data[i].gender == 'M') {
-							gender.innerHTML = '男';
-						}
-						if (data[i].gender == 'D') {
-							gender.innerHTML = '客服小天使';
-						}
-						//gender.innerHTML = data[i].gender;
-						gender.setAttribute('class','gender');
-						document.getElementById('post_'+i).appendChild(gender);
-					
+                        var postimformation = document.createElement("div");
+                        postimformation.setAttribute("class", "postimformation");
+                        document.getElementById("post_" + i).appendChild(postimformation);
 
-						var title = document.createElement("div");
-						title.innerHTML = data[i].title;
-						title.setAttribute('class','title');
-						document.getElementById('post_'+i).appendChild(title);
+                        var forumName = document.createElement("div");
+                        forumName.innerHTML = data[i].forumName;
+                        forumName.setAttribute("class", "forumName");
+                        postimformation.appendChild(forumName);
 
-						var briefcontent = document.createElement("div");
-						briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
-						briefcontent.setAttribute('class','briefcontent');
-						document.getElementById('post_'+i).appendChild(briefcontent);
+                        var gender = document.createElement("div");
 
-						var makelink = document.createElement("form");
-						makelink.setAttribute('action','http://localhost:3000/post');
-						makelink.setAttribute('method','POST');
-						makelink.setAttribute('id','POSTform_' +i);
-						makelink.setAttribute('name','name');
-						makelink.setAttribute('value',data[i].id);
-						//makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
-						post.appendChild(makelink);
+                        if (data[i].gender == "F") {
+                            gender.innerHTML = "女";
+                        }
+                        if (data[i].gender == "M") {
+                            gender.innerHTML = "男";
+                        }
+                        if (data[i].gender == "D") {
+                            gender.innerHTML = "客服小天使";
+                        }
+                        //gender.innerHTML = data[i].gender;
+                        gender.setAttribute("class", "gender");
+                        postimformation.appendChild(gender);
 
-						var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
+                        var title = document.createElement("div");
+                        title.innerHTML = data[i].title;
+                        title.setAttribute("class", "title");
+                        document.getElementById("post_" + i).appendChild(title);
 
-						makelink.setAttribute('onsubmit', goto);
+                        var briefcontent = document.createElement("div");
+                        briefcontent.innerHTML = data[i].excerpt.substring(0, 40) + "...";
+                        briefcontent.setAttribute("class", "briefcontent");
+                        document.getElementById("post_" + i).appendChild(briefcontent);
 
-						post.appendChild(makelink);
+                        var makelink = document.createElement("form");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
+                        makelink.setAttribute("method", "POST");
+                        makelink.setAttribute("id", "POSTform_" + i);
+                        makelink.setAttribute("name", "name");
+                        makelink.setAttribute("value", data[i].id);
 
-						var premore = document.createElement("input");
-						premore.setAttribute('class','premore')
-						premore.setAttribute('type','text');
+                        document.getElementById("nextpage").value = data[i].id;
+                        //makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                        post.appendChild(makelink);
 
-						premore.setAttribute('name','name');
+                        var goto = 'return returnpost("' + "POSTform_" + i + '")';
 
-						premore.setAttribute('value',data[i].id);		//premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                        makelink.setAttribute("onsubmit", goto);
 
-						makelink.appendChild(premore);
+                        post.appendChild(makelink);
 
-						var more = document.createElement("input");
-						more.setAttribute('class','more')
-						more.setAttribute('type','submit');
+                        var premore = document.createElement("input");
+                        premore.setAttribute("class", "premore");
+                        premore.setAttribute("type", "text");
 
-						//more.setAttribute('name','name');
+                        premore.setAttribute("name", "name");
 
-						more.setAttribute('value',"More...");
+                        premore.setAttribute("value", data[i].id); //premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
 
+                        makelink.appendChild(premore);
 
-						makelink.appendChild(more);
+                        var more = document.createElement("input");
+                        more.setAttribute("class", "more");
+                        more.setAttribute("type", "submit");
 
-					}
-				
-					
-				});
+                        //more.setAttribute('name','name');
+
+                        more.setAttribute("value", "More...");
+
+                        makelink.appendChild(more);
+                    }
+					  
+                    document.getElementById("nextpage").value = data[data.length-1].id;
+                  
+				    });
+			// });
+
+                //console.log(document.getElementById("nextboard").value);
+
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
+
+            function returnboard(data) {
+                $("#board").empty();
+                document.getElementById("showcatehot").style.backgroundColor = "#c3d3d6";
+			      document.getElementById("showcatetime").style.backgroundColor = "#f5f5f5";
+                document.getElementById("shownextpage").style.visibility = "hidden";
+   		    document.getElementById("nextcate").value = document.getElementById("foruser").value;
+			 document.getElementById("timeid").value = document.getElementById("foruser").value;
+			 document.getElementById("hotid").value = document.getElementById("foruser").value;
 			
-            	
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
-		}
-		  
-		  
-		  
+		    //console.log( document.getElementById("nextcate").value);
+                var mainboard = document.createElement("div");
+                mainboard.innerHTML = "看板";
+                mainboard.setAttribute("class", "post");
+                document.getElementById("board").appendChild(mainboard);
+                document.getElementById("showcatetime").style.visibility = "visible";
+                document.getElementById("showcatehot").style.visibility = "visible";
+
+                $("#show" + data).ajaxSubmit(function (data) {
+                    //產生文章
+                    for (i = 0; i < data.length; i++) {
+                        //console.log(data[i]);
+                        var post = document.createElement("div");
+                        post.setAttribute("class", "post");
+                        post.setAttribute("id", "post_" + i);
+
+                        document.getElementById("board").appendChild(post);
+
+                        var forumName = document.createElement("div");
+                        forumName.innerHTML = data[i].forumName;
+                        forumName.setAttribute("class", "forumName");
+
+                        var gender = document.createElement("span");
+
+                        if (data[i].gender == "F") {
+                            gender.innerHTML = "女";
+                        }
+                        if (data[i].gender == "M") {
+                            gender.innerHTML = "男";
+                        }
+                        if (data[i].gender == "D") {
+                            gender.innerHTML = "客服小天使";
+                        }
+                        //gender.innerHTML = data[i].gender;
+                        gender.setAttribute("class", "gender");
+                        document.getElementById("post_" + i).appendChild(gender);
+
+                        var title = document.createElement("div");
+                        title.innerHTML = data[i].title;
+                        title.setAttribute("class", "title");
+                        document.getElementById("post_" + i).appendChild(title);
+
+                        var briefcontent = document.createElement("div");
+                        briefcontent.innerHTML = data[i].excerpt.substring(0, 40) + "...";
+                        briefcontent.setAttribute("class", "briefcontent");
+                        document.getElementById("post_" + i).appendChild(briefcontent);
+
+                        var makelink = document.createElement("form");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
+                        makelink.setAttribute("method", "POST");
+                        makelink.setAttribute("id", "POSTform_" + i);
+                        makelink.setAttribute("name", "name");
+                        makelink.setAttribute("value", data[i].id);
+                        //makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                        post.appendChild(makelink);
+
+                        var goto = 'return returnpost("' + "POSTform_" + i + '")';
+
+                        makelink.setAttribute("onsubmit", goto);
+
+                        post.appendChild(makelink);
+
+                        var premore = document.createElement("input");
+                        premore.setAttribute("class", "premore");
+                        premore.setAttribute("type", "text");
+
+                        premore.setAttribute("name", "name");
+
+                        premore.setAttribute("value", data[i].id); //premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+                        makelink.appendChild(premore);
+
+                        var more = document.createElement("input");
+                        more.setAttribute("class", "more");
+                        more.setAttribute("type", "submit");
+
+                        //more.setAttribute('name','name');
+
+                        more.setAttribute("value", "More...");
+
+                        makelink.appendChild(more);
+                    }
+                });
+
+                document.getElementById("nextboard").value = document.getElementById("foruser").value;
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
+
             function hotpost() {
-			$("#board").empty();
+                $("#board").empty();
+
+                document.getElementById("showcatehot").style.visibility = "hidden";
+                document.getElementById("showcatetime").style.visibility = "hidden";
 			
-					var mainboard = document.createElement("div");
-					mainboard.innerHTML = "熱門文章"
-					mainboard.setAttribute('class','post');
-					document.getElementById('board').appendChild(mainboard);
-			$("#showhotpost").ajaxSubmit(function(message) {
-
-				
+                document.getElementById("nextcate").value = "hot";
 			
-				
-            	//http://localhost:3000/
-            	//http://localhost:3000/
-					$.post('http://localhost:3000/hotpost', {}, function(data){
-
-					//產生文章
-					for (i=0;i<data.length;i++){
-
-					//console.log(data[i]);
-					var post = document.createElement("div");
-						post.setAttribute('class','post');
-						post.setAttribute('id','post_'+i	);
-
-						document.getElementById('board').appendChild(post);
-						
-						
-						var postimformation = document.createElement("div");
-						postimformation.setAttribute('class','postimformation');
-						document.getElementById('post_'+i).appendChild(postimformation);
-
-
-
-						var forumName = document.createElement("div");
-						forumName.innerHTML = data[i].forumName;
-						forumName.setAttribute('class','forumName');
-						postimformation.appendChild(forumName);
-
-
-						var gender = document.createElement("div");
-
-						if (data[i].gender == 'F') {
-							gender.innerHTML = '女';
-						}
-						if (data[i].gender == 'M') {
-							gender.innerHTML = '男';
-						}
-						if (data[i].gender == 'D') {
-							gender.innerHTML = '客服小天使';
-						}
-						//gender.innerHTML = data[i].gender;
-						gender.setAttribute('class','gender');
-						postimformation.appendChild(gender);
-						
-						var title = document.createElement("div");
-						title.innerHTML = data[i].title;
-						title.setAttribute('class','title');
-						document.getElementById('post_'+i).appendChild(title);
-
-						var briefcontent = document.createElement("div");
-						briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
-						briefcontent.setAttribute('class','briefcontent');
-						document.getElementById('post_'+i).appendChild(briefcontent);
-
-						var makelink = document.createElement("form");
-						makelink.setAttribute('action','http://localhost:3000/post');
-						makelink.setAttribute('method','POST');
-						makelink.setAttribute('id','POSTform_' +i);
-						makelink.setAttribute('name','name');
-						makelink.setAttribute('value',data[i].id);
-						//makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
-						post.appendChild(makelink);
-
-						var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-
-						makelink.setAttribute('onsubmit', goto);
-
-						post.appendChild(makelink);
-
-						var premore = document.createElement("input");
-						premore.setAttribute('class','premore')
-						premore.setAttribute('type','text');
-
-						premore.setAttribute('name','name');
-
-						premore.setAttribute('value',data[i].id);		//premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
-
-						makelink.appendChild(premore);
-
-						var more = document.createElement("input");
-						more.setAttribute('class','more')
-						more.setAttribute('type','submit');
-
-						//more.setAttribute('name','name');
-
-						more.setAttribute('value',"More...");
-
-
-						makelink.appendChild(more);
-
-					}
-				
-					
-				});
-			});
-            	
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
-		}
-		    function sex() {
-			$("#board").empty();
 			
-					var mainboard = document.createElement("div");
-					mainboard.innerHTML = "西斯"
-					mainboard.setAttribute('class','post');
-					document.getElementById('board').appendChild(mainboard);
-			    	$("#showsex").ajaxSubmit(function(message) {
-
-				
-			
-				
-            	//http://localhost:3000/
-            	//http://localhost:3000/
-					$.post('http://localhost:3000/sex', {}, function(data){
-
-					//產生文章
-					for (i=0;i<data.length;i++){
-
-					//console.log(data[i]);
-					var post = document.createElement("div");
-						post.setAttribute('class','post');
-						post.setAttribute('id','post_'+i	);
-
-						document.getElementById('board').appendChild(post);
-
-						var forumName = document.createElement("div");
-						forumName.innerHTML = data[i].forumName;
-						forumName.setAttribute('class','forumName');
-						
-
-						var gender = document.createElement("span");
-
-						if (data[i].gender == 'F') {
-							gender.innerHTML = '女';
-						}
-						if (data[i].gender == 'M') {
-							gender.innerHTML = '男';
-						}
-						if (data[i].gender == 'D') {
-							gender.innerHTML = '客服小天使';
-						}
-						//gender.innerHTML = data[i].gender;
-						gender.setAttribute('class','gender');
-						document.getElementById('post_'+i).appendChild(gender);
-					
-
-						var title = document.createElement("div");
-						title.innerHTML = data[i].title;
-						title.setAttribute('class','title');
-						document.getElementById('post_'+i).appendChild(title);
-
-						var briefcontent = document.createElement("div");
-						briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
-						briefcontent.setAttribute('class','briefcontent');
-						document.getElementById('post_'+i).appendChild(briefcontent);
-
-						var makelink = document.createElement("form");
-						makelink.setAttribute('action','http://localhost:3000/post');
-						makelink.setAttribute('method','POST');
-						makelink.setAttribute('id','POSTform_' +i);
-						makelink.setAttribute('name','name');
-						makelink.setAttribute('value',data[i].id);
-						//makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
-						post.appendChild(makelink);
-
-						var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-
-						makelink.setAttribute('onsubmit', goto);
-
-						post.appendChild(makelink);
-
-						var premore = document.createElement("input");
-						premore.setAttribute('class','premore')
-						premore.setAttribute('type','text');
-
-						premore.setAttribute('name','name');
-
-						premore.setAttribute('value',data[i].id);		//premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
-
-						makelink.appendChild(premore);
-
-						var more = document.createElement("input");
-						more.setAttribute('class','more')
-						more.setAttribute('type','submit');
-
-						//more.setAttribute('name','name');
-
-						more.setAttribute('value',"More...");
-
-
-						makelink.appendChild(more);
-
-					}
-				
-					
-				});
-			});
-            	
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
-		}
-		  
-		   function animal_crossing() {
-			$("#board").empty();
-			
-					var mainboard = document.createElement("div");
-					mainboard.innerHTML = "動物森友會"
-					mainboard.setAttribute('class','post');
-					document.getElementById('board').appendChild(mainboard);
-			    	$("#showanimal_crossing").ajaxSubmit(function(message) {
-
-				
-			
-				
-            	//http://localhost:3000/
-            	//http://localhost:3000/
-					$.post('http://localhost:3000/animal_crossing', {}, function(data){
-
-					//產生文章
-					for (i=0;i<data.length;i++){
-
-					//console.log(data[i]);
-					var post = document.createElement("div");
-						post.setAttribute('class','post');
-						post.setAttribute('id','post_'+i	);
-
-						document.getElementById('board').appendChild(post);
-
-						var forumName = document.createElement("div");
-						forumName.innerHTML = data[i].forumName;
-						forumName.setAttribute('class','forumName');
-						
-
-						var gender = document.createElement("span");
-
-						if (data[i].gender == 'F') {
-							gender.innerHTML = '女';
-						}
-						if (data[i].gender == 'M') {
-							gender.innerHTML = '男';
-						}
-						if (data[i].gender == 'D') {
-							gender.innerHTML = '客服小天使';
-						}
-						//gender.innerHTML = data[i].gender;
-						gender.setAttribute('class','gender');
-						document.getElementById('post_'+i).appendChild(gender);
-					
-
-						var title = document.createElement("div");
-						title.innerHTML = data[i].title;
-						title.setAttribute('class','title');
-						document.getElementById('post_'+i).appendChild(title);
-
-						var briefcontent = document.createElement("div");
-						briefcontent.innerHTML = data[i].excerpt.substring(0,40)+"...";
-						briefcontent.setAttribute('class','briefcontent');
-						document.getElementById('post_'+i).appendChild(briefcontent);
-
-						var makelink = document.createElement("form");
-						makelink.setAttribute('action','http://localhost:3000/post');
-						makelink.setAttribute('method','POST');
-						makelink.setAttribute('id','POSTform_' +i);
-						makelink.setAttribute('name','name');
-						makelink.setAttribute('value',data[i].id);
-						//makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
-						post.appendChild(makelink);
-
-						var goto = 'return returnpost("' + 'POSTform_' + i  + '")';
-
-						makelink.setAttribute('onsubmit', goto);
-
-						post.appendChild(makelink);
-
-						var premore = document.createElement("input");
-						premore.setAttribute('class','premore')
-						premore.setAttribute('type','text');
-
-						premore.setAttribute('name','name');
-
-						premore.setAttribute('value',data[i].id);		//premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
-
-						makelink.appendChild(premore);
-
-						var more = document.createElement("input");
-						more.setAttribute('class','more')
-						more.setAttribute('type','submit');
-
-						//more.setAttribute('name','name');
-
-						more.setAttribute('value',"More...");
-
-
-						makelink.appendChild(more);
-
-					}
-				
-					
-				});
-			});
-            	
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
-		}
-		  
-		     
-
-
-            function returnpost(id){
-            	//console.log(id);
-
-            	var content = document.createElement("div");
-            		content.setAttribute('id','contentpost');
-            		document.querySelector('body').appendChild(content);
-            	var closebtn = document.createElement("button");
-            		closebtn.setAttribute('id','closebtn');
-            		closebtn.setAttribute('onclick','closepost()');
-            		closebtn.innerHTML = 'Close';
-
-            		content.appendChild(closebtn);
-
-
-            	$("#" + id).ajaxSubmit(function(message) {
-            		var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-
-            		var postcontenttitle = document.createElement("pre");
-            		postcontenttitle.setAttribute('class','postcontenttitle')
-
-            		console.log(message.content2[0]);
-
-            		var postcontent = document.createElement("pre");
-            		var postcontenttime = document.createElement("pre");
-
-            		postcontenttitle.innerHTML = message.content1.title;
-            		postcontenttime.innerHTML= message.content1.updatedAt;
-            		postcontent.innerHTML = linkify(message.content1.content);
-				
-            		content.appendChild(postcontenttitle);
-            		content.appendChild(postcontenttime);
-            		content.appendChild(postcontent);
-
-            		var line = document.createElement("div");
-            		line.setAttribute('class','line')
-            		content.appendChild(line);
-
-            		for (j=0;j<message.content2.length;j++){
-
-            			if (message.content2[j].content != undefined){
-
-            			var content2 = document.createElement("pre");
-            			content2.innerHTML=linkify(message.content2[j].content);
-            			content2.setAttribute("class",'post')
-					var content2floor = document.createElement("pre");
-            			content2floor.innerHTML=linkify(message.content2[j].school + " " + message.content2[j].floor+"樓       " +message.content2[j].updatedAt);
-            			
-						
-						
-            			content.appendChild(content2floor);
-					
-					content.appendChild(content2);	
-						
-						
-            			}
-
-            		}
-
-
-
-
-            	});
-
-
-            	return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+                var mainboard = document.createElement("div");
+                mainboard.innerHTML = "熱門文章";
+                mainboard.setAttribute("class", "post");
+                document.getElementById("board").appendChild(mainboard);
+                
+                    //http://localhost:3000/
+                    //http://localhost:3000/
+                    $.post("http://localhost:3000/hotpost", {}, function (data) {
+                        //產生文章
+                        for (i = 0; i < data.length; i++) {
+                            var post = document.createElement("div");
+                            post.setAttribute("class", "post");
+                            post.setAttribute("id", "post_" + i);
+
+                            document.getElementById("board").appendChild(post);
+
+                            var postimformation = document.createElement("div");
+                            postimformation.setAttribute("class", "postimformation");
+                            document.getElementById("post_" + i).appendChild(postimformation);
+
+                            var forumName = document.createElement("div");
+                            forumName.innerHTML = data[i].forumName;
+                            forumName.setAttribute("class", "forumName");
+                            postimformation.appendChild(forumName);
+
+                            var gender = document.createElement("div");
+
+                            if (data[i].gender == "F") {
+                                gender.innerHTML = "女";
+                            }
+                            if (data[i].gender == "M") {
+                                gender.innerHTML = "男";
+                            }
+                            if (data[i].gender == "D") {
+                                gender.innerHTML = "客服小天使";
+                            }
+                            //gender.innerHTML = data[i].gender;
+                            gender.setAttribute("class", "gender");
+                            postimformation.appendChild(gender);
+
+                            var title = document.createElement("div");
+                            title.innerHTML = data[i].title;
+                            title.setAttribute("class", "title");
+                            document.getElementById("post_" + i).appendChild(title);
+
+                            var briefcontent = document.createElement("div");
+                            briefcontent.innerHTML = data[i].excerpt.substring(0, 40) + "...";
+                            briefcontent.setAttribute("class", "briefcontent");
+                            document.getElementById("post_" + i).appendChild(briefcontent);
+
+                            var makelink = document.createElement("form");
+                            makelink.setAttribute("action", "http://localhost:3000/post");
+                            makelink.setAttribute("method", "POST");
+                            makelink.setAttribute("id", "POSTform_" + i);
+                            makelink.setAttribute("name", "name");
+                            makelink.setAttribute("value", data[i].id);
+
+                            //makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                            post.appendChild(makelink);
+
+                            var goto = 'return returnpost("' + "POSTform_" + i + '")';
+
+                            makelink.setAttribute("onsubmit", goto);
+
+                            post.appendChild(makelink);
+
+                            var premore = document.createElement("input");
+                            premore.setAttribute("class", "premore");
+                            premore.setAttribute("type", "text");
+
+                            premore.setAttribute("name", "name");
+
+                            premore.setAttribute("value", data[i].id); //premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+                            makelink.appendChild(premore);
+
+                            var more = document.createElement("input");
+                            more.setAttribute("class", "more");
+                            more.setAttribute("type", "submit");
+
+                            //more.setAttribute('name','name');
+
+                            more.setAttribute("value", "More...");
+
+                            makelink.appendChild(more);
+                        }
+
+                        document.getElementById("nextpage").value = data[data.length-1].id;
+                        document.getElementById("nextboard").value = "hotpost";
+				//  console.log(data[data.length-1].id);
+                    });
+              
+
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
+            function sex() {
+                $("#board").empty();
+
+                var mainboard = document.createElement("div");
+                mainboard.innerHTML = "西斯";
+                mainboard.setAttribute("class", "post");
+                document.getElementById("board").appendChild(mainboard);
+                $("#showsex").ajaxSubmit(function (message) {
+                    //http://localhost:3000/
+                    //http://localhost:3000/
+                    $.post("http://localhost:3000/sex", {}, function (data) {
+                        //產生文章
+                        for (i = 0; i < data.length; i++) {
+                            //console.log(data[i]);
+                            var post = document.createElement("div");
+                            post.setAttribute("class", "post");
+                            post.setAttribute("id", "post_" + i);
+
+                            document.getElementById("board").appendChild(post);
+
+                            var forumName = document.createElement("div");
+                            forumName.innerHTML = data[i].forumName;
+                            forumName.setAttribute("class", "forumName");
+
+                            var gender = document.createElement("span");
+
+                            if (data[i].gender == "F") {
+                                gender.innerHTML = "女";
+                            }
+                            if (data[i].gender == "M") {
+                                gender.innerHTML = "男";
+                            }
+                            if (data[i].gender == "D") {
+                                gender.innerHTML = "客服小天使";
+                            }
+                            //gender.innerHTML = data[i].gender;
+                            gender.setAttribute("class", "gender");
+                            document.getElementById("post_" + i).appendChild(gender);
+
+                            var title = document.createElement("div");
+                            title.innerHTML = data[i].title;
+                            title.setAttribute("class", "title");
+                            document.getElementById("post_" + i).appendChild(title);
+
+                            var briefcontent = document.createElement("div");
+                            briefcontent.innerHTML = data[i].excerpt.substring(0, 40) + "...";
+                            briefcontent.setAttribute("class", "briefcontent");
+                            document.getElementById("post_" + i).appendChild(briefcontent);
+
+                            var makelink = document.createElement("form");
+                            makelink.setAttribute("action", "http://localhost:3000/post");
+                            makelink.setAttribute("method", "POST");
+                            makelink.setAttribute("id", "POSTform_" + i);
+                            makelink.setAttribute("name", "name");
+                            makelink.setAttribute("value", data[i].id);
+                            //makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                            post.appendChild(makelink);
+
+                            var goto = 'return returnpost("' + "POSTform_" + i + '")';
+
+                            makelink.setAttribute("onsubmit", goto);
+
+                            post.appendChild(makelink);
+
+                            var premore = document.createElement("input");
+                            premore.setAttribute("class", "premore");
+                            premore.setAttribute("type", "text");
+
+                            premore.setAttribute("name", "name");
+
+                            premore.setAttribute("value", data[i].id); //premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+                            makelink.appendChild(premore);
+
+                            var more = document.createElement("input");
+                            more.setAttribute("class", "more");
+                            more.setAttribute("type", "submit");
+
+                            //more.setAttribute('name','name');
+
+                            more.setAttribute("value", "More...");
+
+                            makelink.appendChild(more);
+                        }
+                    });
+                });
+
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
             }
 
-            function closepost(){
-            	document.getElementById('contentpost').remove();
+            function animal_crossing() {
+                $("#board").empty();
+                document.getElementById("showcatehot").style.backgroundColor = "#c3d3d6";
+                document.getElementById("shownextpage").style.visibility = "hidden";
+   		    document.getElementById("nextboard").value = "animal_crossing"
+		    //console.log( document.getElementById("nextcate").value);
+                var mainboard = document.createElement("div");
+                mainboard.innerHTML = "看板";
+                mainboard.setAttribute("class", "post");
+                document.getElementById("board").appendChild(mainboard);
+                document.getElementById("showcatetime").style.visibility = "visible";
+                document.getElementById("showcatehot").style.visibility = "visible";
+		    document.getElementById("hotid").value = "animal_crossing";
+      	    document.getElementById("timeid").value = "animal_crossing";
 
+
+			
+                $("#showanimal_crossing").ajaxSubmit(function (message) {
+                    $.post("http://localhost:3000/animal_crossing", {}, function (data) {
+                        //產生文章
+                        for (i = 0; i < data.length; i++) {
+                            //console.log(data[i]);
+                            var post = document.createElement("div");
+                            post.setAttribute("class", "post");
+                            post.setAttribute("id", "post_" + i);
+
+                            document.getElementById("board").appendChild(post);
+
+                            var forumName = document.createElement("div");
+                            forumName.innerHTML = data[i].forumName;
+                            forumName.setAttribute("class", "forumName");
+
+                            var gender = document.createElement("span");
+
+                            if (data[i].gender == "F") {
+                                gender.innerHTML = "女";
+                            }
+                            if (data[i].gender == "M") {
+                                gender.innerHTML = "男";
+                            }
+                            if (data[i].gender == "D") {
+                                gender.innerHTML = "客服小天使";
+                            }
+                            //gender.innerHTML = data[i].gender;
+                            gender.setAttribute("class", "gender");
+                            document.getElementById("post_" + i).appendChild(gender);
+
+                            var title = document.createElement("div");
+                            title.innerHTML = data[i].title;
+                            title.setAttribute("class", "title");
+                            document.getElementById("post_" + i).appendChild(title);
+
+                            var briefcontent = document.createElement("div");
+                            briefcontent.innerHTML = data[i].excerpt.substring(0, 40) + "...";
+                            briefcontent.setAttribute("class", "briefcontent");
+                            document.getElementById("post_" + i).appendChild(briefcontent);
+
+                            var makelink = document.createElement("form");
+                            makelink.setAttribute("action", "http://localhost:3000/post");
+                            makelink.setAttribute("method", "POST");
+                            makelink.setAttribute("id", "POSTform_" + i);
+                            makelink.setAttribute("name", "name");
+                            makelink.setAttribute("value", data[i].id);
+                            //makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                            post.appendChild(makelink);
+
+                            var goto = 'return returnpost("' + "POSTform_" + i + '")';
+
+                            makelink.setAttribute("onsubmit", goto);
+
+                            post.appendChild(makelink);
+
+                            var premore = document.createElement("input");
+                            premore.setAttribute("class", "premore");
+                            premore.setAttribute("type", "text");
+
+                            premore.setAttribute("name", "name");
+
+                            premore.setAttribute("value", data[i].id); //premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+                            makelink.appendChild(premore);
+
+                            var more = document.createElement("input");
+                            more.setAttribute("class", "more");
+                            more.setAttribute("type", "submit");
+
+                            //more.setAttribute('name','name');
+
+                            more.setAttribute("value", "More...");
+
+                            makelink.appendChild(more);
+                        }
+                    });
+                });
+
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
             }
 
+            function returnpost(id) {
+                //console.log(id);
+
+                var content = document.createElement("div");
+                content.setAttribute("id", "contentpost");
+                document.querySelector("body").appendChild(content);
+                var closebtn = document.createElement("button");
+                closebtn.setAttribute("id", "closebtn");
+                closebtn.setAttribute("onclick", "closepost()");
+                closebtn.innerHTML = "Close";
+
+                content.appendChild(closebtn);
+
+                $("#" + id).ajaxSubmit(function (message) {
+                    var urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+
+                    var postcontenttitle = document.createElement("pre");
+                    postcontenttitle.setAttribute("class", "postcontenttitle");
+
+                    // console.log(message.content2[0]);
+
+                    var postcontent = document.createElement("pre");
+                    var postcontenttime = document.createElement("pre");
+
+                    postcontenttitle.innerHTML = message.content1.title;
+                    postcontenttime.innerHTML = message.content1.updatedAt;
+                    postcontent.innerHTML = linkify(message.content1.content);
+
+                    content.appendChild(postcontenttitle);
+                    content.appendChild(postcontenttime);
+                    content.appendChild(postcontent);
+
+                    var line = document.createElement("div");
+                    line.setAttribute("class", "line");
+                    content.appendChild(line);
+
+                    for (j = 0; j < message.content2.length; j++) {
+                        if (message.content2[j].content != undefined) {
+                            var content2 = document.createElement("pre");
+                            content2.innerHTML = linkify(message.content2[j].content);
+                            content2.setAttribute("class", "content2");
+                            var content2floor = document.createElement("pre");
+                            content2floor.setAttribute("class", "content2floor");
+                            content2floor.innerHTML = linkify(message.content2[j].school + " " + message.content2[j].floor + "樓       " + message.content2[j].updatedAt);
+
+                            content.appendChild(content2floor);
+
+                            content.appendChild(content2);
+                        }
+                    }
+                });
+
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
+
+            function closepost() {
+                document.getElementById("contentpost").remove();
+            }
 
             function linkify(text) {
-            	var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-            	return text.replace(urlRegex, function(url) {
-            		if(url.match('jpg')){
-            			return '<a href="'+url+'">' + url + '<br></a><img src="' + url.replace("/.i/","/") + '" ></img>';
-            			//'<a href="' + url + '">' + url + '</a>';
-
-
-            		}else {
-            			return '<a href="' + url + '" target="_blank">' + url + '</a>';
-            		}
-Í
-            	});
+                var urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+                return text.replace(urlRegex, function (url) {
+                    if (url.match("jpg")) {
+                        return '<a href="' + url + '">' + url + '<br></a><img src="' + url.replace("/.i/", "/") + '" ></img>';
+                        //'<a href="' + url + '">' + url + '</a>';
+                    } else {
+                        return '<a href="' + url + '" target="_blank">' + url + "</a>";
+                    }
+                    Í;
+                });
             }
-		  
-		  
+
+            function clickhot() {
+                document.getElementById("showcatehot").style.backgroundColor = "#c3d3d6";
+                document.getElementById("nextcate").value = "hot";
+                document.getElementById("showcatetime").style.backgroundColor = "#f5f5f5";
+                document.getElementById("shownextpage").style.visibility = "hidden";
+
+                ////
+                $("#board").empty();
+
+                var mainboard = document.createElement("div");
+                mainboard.innerHTML = "熱門文章";
+                mainboard.setAttribute("class", "post");
+                document.getElementById("board").appendChild(mainboard);
+                $("#catehot").ajaxSubmit(function (data) {
+                    //產生文章
+                    for (i = 0; i < data.length; i++) {
+                        //console.log(data[i]);
+                        var post = document.createElement("div");
+                        post.setAttribute("class", "post");
+                        post.setAttribute("id", "post_" + i);
+
+                        document.getElementById("board").appendChild(post);
+
+                        var forumName = document.createElement("div");
+                        forumName.innerHTML = data[i].forumName;
+                        forumName.setAttribute("class", "forumName");
+
+                        var gender = document.createElement("span");
+
+                        if (data[i].gender == "F") {
+                            gender.innerHTML = "女";
+                        }
+                        if (data[i].gender == "M") {
+                            gender.innerHTML = "男";
+                        }
+                        if (data[i].gender == "D") {
+                            gender.innerHTML = "客服小天使";
+                        }
+                        //gender.innerHTML = data[i].gender;
+                        gender.setAttribute("class", "gender");
+                        document.getElementById("post_" + i).appendChild(gender);
+
+                        var title = document.createElement("div");
+                        title.innerHTML = data[i].title;
+                        title.setAttribute("class", "title");
+                        document.getElementById("post_" + i).appendChild(title);
+
+                        var briefcontent = document.createElement("div");
+                        briefcontent.innerHTML = data[i].excerpt.substring(0, 40) + "...";
+                        briefcontent.setAttribute("class", "briefcontent");
+                        document.getElementById("post_" + i).appendChild(briefcontent);
+
+                        var makelink = document.createElement("form");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
+                        makelink.setAttribute("method", "POST");
+                        makelink.setAttribute("id", "POSTform_" + i);
+                        makelink.setAttribute("name", "name");
+                        makelink.setAttribute("value", data[i].id);
+                        //makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                        post.appendChild(makelink);
+
+                        var goto = 'return returnpost("' + "POSTform_" + i + '")';
+
+                        makelink.setAttribute("onsubmit", goto);
+
+                        post.appendChild(makelink);
+
+                        var premore = document.createElement("input");
+                        premore.setAttribute("class", "premore");
+                        premore.setAttribute("type", "text");
+
+                        premore.setAttribute("name", "name");
+
+                        premore.setAttribute("value", data[i].id); //premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+                        makelink.appendChild(premore);
+
+                        var more = document.createElement("input");
+                        more.setAttribute("class", "more");
+                        more.setAttribute("type", "submit");
+
+                        //more.setAttribute('name','name');
+
+                        more.setAttribute("value", "More...");
+
+                        makelink.appendChild(more);
+                    }
+			    document.getElementById("nextpage").value = data[data.length-1].id;
+                });
+
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
+
+            function clicktime() {
+                document.getElementById("showcatetime").style.backgroundColor = "#c3d3d6";
+                document.getElementById("nextcate").value = document.getElementById("foruser").value;
+                document.getElementById("showcatehot").style.backgroundColor = "#f5f5f5";
+                document.getElementById("shownextpage").style.visibility = "visible";
 		
+               
+             
+                ////
+                $("#board").empty();
+
+                var mainboard = document.createElement("div");
+                mainboard.innerHTML = "最新文章";
+                mainboard.setAttribute("class", "post");
+                document.getElementById("board").appendChild(mainboard);
+                $("#catetime").ajaxSubmit(function (data) {
+                    //產生文章
+                    for (i = 0; i < data.length; i++) {
+                        //console.log(data[i]);
+                        var post = document.createElement("div");
+                        post.setAttribute("class", "post");
+                        post.setAttribute("id", "post_" + i);
+
+                        document.getElementById("board").appendChild(post);
+
+                        var forumName = document.createElement("div");
+                        forumName.innerHTML = data[i].forumName;
+                        forumName.setAttribute("class", "forumName");
+
+                        var gender = document.createElement("span");
+
+                        if (data[i].gender == "F") {
+                            gender.innerHTML = "女";
+                        }
+                        if (data[i].gender == "M") {
+                            gender.innerHTML = "男";
+                        }
+                        if (data[i].gender == "D") {
+                            gender.innerHTML = "客服小天使";
+                        }
+                        //gender.innerHTML = data[i].gender;
+                        gender.setAttribute("class", "gender");
+                        document.getElementById("post_" + i).appendChild(gender);
+
+                        var title = document.createElement("div");
+                        title.innerHTML = data[i].title;
+                        title.setAttribute("class", "title");
+                        document.getElementById("post_" + i).appendChild(title);
+
+                        var briefcontent = document.createElement("div");
+                        briefcontent.innerHTML = data[i].excerpt.substring(0, 40) + "...";
+                        briefcontent.setAttribute("class", "briefcontent");
+                        document.getElementById("post_" + i).appendChild(briefcontent);
+
+                        var makelink = document.createElement("form");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
+                        makelink.setAttribute("method", "POST");
+                        makelink.setAttribute("id", "POSTform_" + i);
+                        makelink.setAttribute("name", "name");
+                        makelink.setAttribute("value", data[i].id);
+                        //makelink.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+                        post.appendChild(makelink);
+
+                        var goto = 'return returnpost("' + "POSTform_" + i + '")';
+
+                        makelink.setAttribute("onsubmit", goto);
+
+                        post.appendChild(makelink);
+
+                        var premore = document.createElement("input");
+                        premore.setAttribute("class", "premore");
+                        premore.setAttribute("type", "text");
+
+                        premore.setAttribute("name", "name");
+
+                        premore.setAttribute("value", data[i].id); //premore.setAttribute('value',"https://www.dcard.tw/_api/posts/"+data[i].id);
+
+                        makelink.appendChild(premore);
+
+                        var more = document.createElement("input");
+                        more.setAttribute("class", "more");
+                        more.setAttribute("type", "submit");
+
+                        //more.setAttribute('name','name');
+
+                        more.setAttribute("value", "More...");
+
+                        makelink.appendChild(more);
+                    }
+			    document.getElementById("nextpage").value = data[data.length-1].id;
+                });
+		    
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
+
+            function returnpost(id) {
+                //console.log(id);
+
+                var content = document.createElement("div");
+                content.setAttribute("id", "contentpost");
+                document.querySelector("body").appendChild(content);
+                var closebtn = document.createElement("button");
+                closebtn.setAttribute("id", "closebtn");
+                closebtn.setAttribute("onclick", "closepost()");
+                closebtn.innerHTML = "Close";
+
+                content.appendChild(closebtn);
+
+                $("#" + id).ajaxSubmit(function (message) {
+                    var urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+
+                    var postcontenttitle = document.createElement("pre");
+                    postcontenttitle.setAttribute("class", "postcontenttitle");
+
+                    // console.log(message.content2[0]);
+
+                    var postcontent = document.createElement("pre");
+                    var postcontenttime = document.createElement("pre");
+
+                    postcontenttitle.innerHTML = message.content1.title;
+                    postcontenttime.innerHTML = message.content1.updatedAt;
+                    postcontent.innerHTML = linkify(message.content1.content);
+
+                    content.appendChild(postcontenttitle);
+                    content.appendChild(postcontenttime);
+                    content.appendChild(postcontent);
+
+                    var line = document.createElement("div");
+                    line.setAttribute("class", "line");
+                    content.appendChild(line);
+
+                    for (j = 0; j < message.content2.length; j++) {
+                        if (message.content2[j].content != undefined) {
+                            var content2 = document.createElement("pre");
+                            content2.innerHTML = linkify(message.content2[j].content);
+                            content2.setAttribute("class", "content2");
+                            var content2floor = document.createElement("pre");
+                            content2floor.setAttribute("class", "content2floor");
+                            content2floor.innerHTML = linkify(message.content2[j].school + " " + message.content2[j].floor + "樓       " + message.content2[j].updatedAt);
+
+                            content.appendChild(content2floor);
+
+                            content.appendChild(content2);
+                        }
+                    }
+			    
+                });
+
+                return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+            }
         </script>
-	    
-	    
+	   
+	<script language="javascript">
+	pad_width=300;
+	pad_height=250;
+	pad_customerId="PFBC20190325001";
+	pad_positionId="PFBP201903250001C";
+	pad_ssl ="false";
+		
+	</script>
+	  
 	  <script>
 	  	(function(name, context, definition) {
     'use strict';
@@ -1494,40 +1853,51 @@ try {
 } catch (err) {}
 	  
 	  </script>
-	  <script language="javascript">
-		pad_width=300;
-		pad_height=250;
-		pad_customerId="PFBC20190325001";
-		pad_positionId="PFBP201903250001C";
-		</script>
-	</head>
-	
+	 		<script language="javascript">
+pad_width=300;
+pad_height=250;
+pad_customerId="PFBC20190325001";
+pad_positionId="PFBP201903250001C";
+</script>
 <script id="pcadscript" language="javascript" src="/xpcadshow.js"></script>	
 	  
-	
+
+  
+    </head>
+
+   
     <body onload="hotpost()">
         <div id="main">
+            <form action="http://localhost:3000/hot" id="catehot" method="POST" onsubmit="return clickhot()" name="name" value="123">
+                <div id="showcatehot" onclick="clickhot()">熱門 <input type="text" id="hotid" name="name" value="hot" style="visibility: hidden;" /></div>
+            </form>
+
+            <form action="http://localhost:3000/time" id="catetime" method="POST" onsubmit="return clicktime()" name="name" value="123">
+                <div id="showcatetime" onclick="clicktime()">最新<input type="text" id="timeid" name="name" value="time" style="visibility: hidden;" /></div>
+            </form>
+
             <div id="forum">
-			
-		 <form action="http://localhost:3000/board" id="showboard" method="POST" onsubmit="return returnboard('board')" name='name' value='123'>
-					<input type="text" id='foruser' name="board" value='請輸入看板英文名..' style="background:#C3D3D6">
-					
-			</form>
-			
-			
+                <form action="http://localhost:3000/board" id="showboard" method="POST" onsubmit="return returnboard('board')" name="name" value="123">
+                    <input type="text" id="foruser" name="board" value="請輸入看板英文名.." style="background: #c3d3d6;" />
+                </form>
+
                 <form action="http://localhost:3000/hotpost" id="showhotpost" method="POST" onsubmit="return hotpost()">
                     <button class="btn">熱門文章</button>
                 </form>
-			
-			 <form action="http://localhost:3000/animal_crossing" id="showanimal_crossing" method="POST" onsubmit="return animal_crossing()">
+
+                <form action="http://localhost:3000/animal_crossing" id="showanimal_crossing" method="POST" onsubmit="return animal_crossing()">
                     <button class="btn">動森</button>
                 </form>
-			 
-			
-		   
             </div>
 
             <div id="board"></div>
         </div>
+
+        <form action="http://localhost:3000/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name="name" value="123">
+            <input type="text" id="nextpage" name="name" value="Next" />
+            <input type="text" id="nextcate" name="fakename" value="hotpost" style="visibility: hidden;" />
+            <input type="text" id="nextboard" name="fakename1" value="" style="visibility: hidden;" />
+            <input type="submit" id="nextpage" value="下一頁" />
+        </form>
     </body>
 </html>
