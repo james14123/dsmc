@@ -10,9 +10,14 @@ var request = require('request');
 var cheerio = require('cheerio');
 var cors = require('cors')
 
-app.use(cors(
- origin: ['https://dsmc-kh.herokuapp.com/'],	
-));
+// 指定允許其他域名訪問 
+header('Access-Control-Allow-Origin:*'); 
+// 響應型別 
+header('Access-Control-Allow-Methods:POST'); 
+// 響應頭設定 
+header('Access-Control-Allow-Headers:x-requested-with,content-type'); 
+
+app.use(cors())l
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
