@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+const fetch = require("node-fetch");
+var header = new fetch.Headers();
 
 var http = require("http");
 var fs = require("fs");
