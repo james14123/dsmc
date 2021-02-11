@@ -10,7 +10,9 @@ var request = require('request');
 var cheerio = require('cheerio');
 var cors = require('cors')
 
-app.use(cors());
+app.use(cors(
+ origin: ['https://dsmc-kh.herokuapp.com/'],	
+));
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
