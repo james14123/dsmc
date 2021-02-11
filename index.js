@@ -8,7 +8,7 @@ var fs = require("fs");
 
 var request = require('request');
 var cheerio = require('cheerio');
-var cors = require('cors')
+var cors = require('cors');
 
 // 指定允許其他域名訪問 
 header('Access-Control-Allow-Origin:*'); 
@@ -17,7 +17,7 @@ header('Access-Control-Allow-Methods:POST');
 // 響應頭設定 
 header('Access-Control-Allow-Headers:x-requested-with,content-type'); 
 
-app.use(cors())l
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
