@@ -173,7 +173,7 @@ app.post('/animal_crossing', (appreq, appres) => {
 
 
 app.post('/hotpost', (appreq, appres) => {
-	appres.AddHeader("Access-Control-Allow-Origin", "*");
+	
 	var url = "https://www.dcard.tw/_api/posts?popular=true";
 	//var url = "https://dcard.tw/_api/posts?popular=true";
 	request({url: url}, (err, res, body) => {
