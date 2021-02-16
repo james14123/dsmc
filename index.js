@@ -1,13 +1,26 @@
 const express = require('express');
+var cloudflare = require('cloudflare-express');
 const bodyParser = require('body-parser');
 const app = express();
+var cookieParser = require('cookie-parser');
+
+app.use(cloudflare.restore());
+app.use(cookieParser());
+
 
 var http = require("http");
+
+var querystring = require("querystring");
 var fs = require("fs");
 
 var request = require('request');
 var cheerio = require('cheerio');
 var cors = require('cors');
+ 
+var server = http.createServer(function (req, res) {    
+});
+ 
+
 
 
 let allowCrossDomain = function(req, res, next) {
@@ -16,7 +29,18 @@ let allowCrossDomain = function(req, res, next) {
   next();
 }
 
-app.use(allowCrossDomain);
+const corsOptions = {
+  origin: [
+    'http://www.example.com',
+    'http://localhost:3000',
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cloudflare.restore());
+app.use(cors(corsOptions));
+
+
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 
@@ -174,21 +198,26 @@ app.post('/animal_crossing', (appreq, appres) => {
 
 app.post('/hotpost', (appreq, appres) => {
 	
-	var url = "https://www.dcard.tw/_api/posts?popular=true";
+	var url = "https://dcard.tw/_api/posts?popular=true";
 	//var url = "https://dcard.tw/_api/posts?popular=true";
 	request({url: url}, (err, res, body) => {
 		var $ = cheerio.load(body)
+		
 		// 抓取文章列表
 		//list = $('article > h2 > a> span').map((index, obj) 
+		
 		list = $('body').map((index, obj) => {
+				console.log("KH: "+list);
 			return {
 				Content: JSON.parse($(obj).text()),
 			}
 				
 		}).get()
 		
-		//console.log("Test: "+list);
+		;
+		//console.log(list);
 		appres.send(list[0].Content);
+		
 	});
 	
 });
@@ -261,7 +290,7 @@ app.post('/post',urlencodedParser, (appreq, appres) => {
 
 
 const port = process.env.PORT || 3000;
-
+//server.listen(5000); 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
