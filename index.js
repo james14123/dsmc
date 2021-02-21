@@ -215,7 +215,7 @@ app.post('/hotpost', (appreq, appres) => {
 		}).get()
 		
 		;
-		console.log(list[0].Content);
+		//console.log(list[0].Content);
 		appres.send(list[0].Content);
 		
 	});
