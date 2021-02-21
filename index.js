@@ -29,7 +29,7 @@ let allowCrossDomain = function(req, res, next) {
 
 const corsOptions = {
   origin: [
-    'http://www.example.com',
+    'https://dsmc-demo1.herokuapp.com/,
     'http://localhost:3000',
   ],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
