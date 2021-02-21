@@ -3,6 +3,8 @@ var cloudflare = require('cloudflare-express');
 const bodyParser = require('body-parser');
 const app = express();
 var cookieParser = require('cookie-parser');
+const cors = 'https://cors-anywhere.herokuapp.com/';
+
 
 app.use(cloudflare.restore({update_on_start:true}));
 app.use(cookieParser());
@@ -36,7 +38,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-app.use(cors(allowCrossDomain));
+app.use(cors());
 
 
 app.use(bodyParser.urlencoded({ extended: true })); 
