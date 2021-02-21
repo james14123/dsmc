@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 var cookieParser = require('cookie-parser');
 
-app.use(cloudflare.restore());
+app.use(cloudflare.restore({update_on_start:true}));
 app.use(cookieParser());
 
 
@@ -20,8 +20,6 @@ var cors = require('cors');
 var server = http.createServer(function (req, res) {    
 });
  
-
-
 
 let allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -207,7 +205,7 @@ app.post('/hotpost', (appreq, appres) => {
 		//list = $('article > h2 > a> span').map((index, obj) 
 		
 		list = $('body').map((index, obj) => {
-				console.log("KH: "+list);
+			
 			return {
 				Content: JSON.parse($(obj).text()),
 			}
@@ -215,7 +213,7 @@ app.post('/hotpost', (appreq, appres) => {
 		}).get()
 		
 		;
-		//console.log(list);
+		console.log(list[0].Content);
 		appres.send(list[0].Content);
 		
 	});
