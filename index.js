@@ -35,7 +35,7 @@ const corsOptions = {
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
-app.use(cloudflare.restore());
+
 app.use(cors(corsOptions));
 
 
