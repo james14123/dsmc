@@ -303,7 +303,7 @@
                 mainboard.setAttribute("class", "post");
                 document.getElementById("board").appendChild(mainboard);
                 $("#shownextpage").ajaxSubmit(function (data) {
-                 //         $.post("https://dsmc-demo.herokuapp.com/next", {}, function (data) {
+                 //         $.post("http://localhost:3000/next", {}, function (data) {
            		//console.log(data);
 
                     //產生文章
@@ -349,7 +349,7 @@
                         document.getElementById("post_" + i).appendChild(briefcontent);
 
                         var makelink = document.createElement("form");
-                        makelink.setAttribute("action", "https://dsmc-demo.herokuapp.com/post");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
                         makelink.setAttribute("method", "POST");
                         makelink.setAttribute("id", "POSTform_" + i);
                         makelink.setAttribute("name", "name");
@@ -455,7 +455,7 @@
                         document.getElementById("post_" + i).appendChild(briefcontent);
 
                         var makelink = document.createElement("form");
-                        makelink.setAttribute("action", "https://dsmc-demo.herokuapp.com/post");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
                         makelink.setAttribute("method", "POST");
                         makelink.setAttribute("id", "POSTform_" + i);
                         makelink.setAttribute("name", "name");
@@ -509,9 +509,9 @@
                 mainboard.setAttribute("class", "post");
                 document.getElementById("board").appendChild(mainboard);
                 
-                    //https://dsmc-demo.herokuapp.com/
-                    //https://dsmc-demo.herokuapp.com/
-                    $.post("https://dsmc-demo.herokuapp.com/hotpost", {}, function (data) {
+                    //http://localhost:3000/
+                    //http://localhost:3000/
+                    $.post("http://localhost:3000/hotpost", {}, function (data) {
                         //產生文章
                         for (i = 0; i < data.length; i++) {
                             var post = document.createElement("div");
@@ -555,7 +555,7 @@
                             document.getElementById("post_" + i).appendChild(briefcontent);
 
                             var makelink = document.createElement("form");
-                            makelink.setAttribute("action", "https://dsmc-demo.herokuapp.com/post");
+                            makelink.setAttribute("action", "http://localhost:3000/post");
                             makelink.setAttribute("method", "POST");
                             makelink.setAttribute("id", "POSTform_" + i);
                             makelink.setAttribute("name", "name");
@@ -607,9 +607,9 @@
                 mainboard.setAttribute("class", "post");
                 document.getElementById("board").appendChild(mainboard);
                 $("#showsex").ajaxSubmit(function (message) {
-                    //https://dsmc-demo.herokuapp.com/
-                    //https://dsmc-demo.herokuapp.com/
-                    $.post("https://dsmc-demo.herokuapp.com/sex", {}, function (data) {
+                    //http://localhost:3000/
+                    //http://localhost:3000/
+                    $.post("http://localhost:3000/sex", {}, function (data) {
                         //產生文章
                         for (i = 0; i < data.length; i++) {
                             //console.log(data[i]);
@@ -649,7 +649,7 @@
                             document.getElementById("post_" + i).appendChild(briefcontent);
 
                             var makelink = document.createElement("form");
-                            makelink.setAttribute("action", "https://dsmc-demo.herokuapp.com/post");
+                            makelink.setAttribute("action", "http://localhost:3000/post");
                             makelink.setAttribute("method", "POST");
                             makelink.setAttribute("id", "POSTform_" + i);
                             makelink.setAttribute("name", "name");
@@ -707,7 +707,7 @@
 
 			
                 $("#showanimal_crossing").ajaxSubmit(function (message) {
-                    $.post("https://dsmc-demo.herokuapp.com/animal_crossing", {}, function (data) {
+                    $.post("http://localhost:3000/animal_crossing", {}, function (data) {
                         //產生文章
                         for (i = 0; i < data.length; i++) {
                             //console.log(data[i]);
@@ -747,7 +747,7 @@
                             document.getElementById("post_" + i).appendChild(briefcontent);
 
                             var makelink = document.createElement("form");
-                            makelink.setAttribute("action", "https://dsmc-demo.herokuapp.com/post");
+                            makelink.setAttribute("action", "http://localhost:3000/post");
                             makelink.setAttribute("method", "POST");
                             makelink.setAttribute("id", "POSTform_" + i);
                             makelink.setAttribute("name", "name");
@@ -912,7 +912,7 @@
                         document.getElementById("post_" + i).appendChild(briefcontent);
 
                         var makelink = document.createElement("form");
-                        makelink.setAttribute("action", "https://dsmc-demo.herokuapp.com/post");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
                         makelink.setAttribute("method", "POST");
                         makelink.setAttribute("id", "POSTform_" + i);
                         makelink.setAttribute("name", "name");
@@ -1007,7 +1007,7 @@
                         document.getElementById("post_" + i).appendChild(briefcontent);
 
                         var makelink = document.createElement("form");
-                        makelink.setAttribute("action", "https://dsmc-demo.herokuapp.com/post");
+                        makelink.setAttribute("action", "http://localhost:3000/post");
                         makelink.setAttribute("method", "POST");
                         makelink.setAttribute("id", "POSTform_" + i);
                         makelink.setAttribute("name", "name");
@@ -1146,24 +1146,24 @@ pad_ssl ="false"
     <body onload="hotpost()">
 	    
         <div id="main">
-            <form action="https://dsmc-demo.herokuapp.com/hot" id="catehot" method="POST" onsubmit="return clickhot()" name="name" value="123">
+            <form action="http://localhost:3000/hot" id="catehot" method="POST" onsubmit="return clickhot()" name="name" value="123">
                 <div id="showcatehot" onclick="clickhot()">熱門 <input type="text" id="hotid" name="name" value="hot" style="visibility: hidden;" /></div>
             </form>
 
-            <form action="https://dsmc-demo.herokuapp.com/time" id="catetime" method="POST" onsubmit="return clicktime()" name="name" value="123">
+            <form action="http://localhost:3000/time" id="catetime" method="POST" onsubmit="return clicktime()" name="name" value="123">
                 <div id="showcatetime" onclick="clicktime()">最新<input type="text" id="timeid" name="name" value="time" style="visibility: hidden;" /></div>
             </form>
 
             <div id="forum">
-                <form action="https://dsmc-demo.herokuapp.com/board" id="showboard" method="POST" onsubmit="return returnboard('board')" name="name" value="123">
+                <form action="http://localhost:3000/board" id="showboard" method="POST" onsubmit="return returnboard('board')" name="name" value="123">
                     <input type="text" id="foruser" name="board" value="請輸入看板英文名.." style="background: #c3d3d6;" />
                 </form>
 
-                <form action="https://dsmc-demo.herokuapp.com/" id="showhotpost" method="POST" onsubmit="return hotpost()">
+                <form action="http://localhost:3000/" id="showhotpost" method="POST" onsubmit="return hotpost()">
                     <button class="btn">熱門文章</button>
                 </form>
 
-                <form action="https://dsmc-demo.herokuapp.com/animal_crossing" id="showanimal_crossing" method="POST" onsubmit="return animal_crossing()">
+                <form action="http://localhost:3000/animal_crossing" id="showanimal_crossing" method="POST" onsubmit="return animal_crossing()">
                     <button class="btn">動森</button>
                 </form>
             </div>
@@ -1171,7 +1171,7 @@ pad_ssl ="false"
             <div id="board"></div>
         </div>
 
-        <form action="https://dsmc-demo.herokuapp.com/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name="name" value="123">
+        <form action="http://localhost:3000/next" id="shownextpage" method="POST" onsubmit="return returnnextpage()" name="name" value="123">
             <input type="text" id="nextpage" name="name" value="Next" />
             <input type="text" id="nextcate" name="fakename" value="hotpost" style="visibility: hidden;" />
             <input type="text" id="nextboard" name="fakename1" value="" style="visibility: hidden;" />
