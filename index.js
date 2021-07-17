@@ -3,10 +3,9 @@ var cloudflare = require('cloudflare-express');
 const bodyParser = require('body-parser');
 const app = express();
 var cookieParser = require('cookie-parser');
-const corsanywhere = 'https://cors-anywhere.herokuapp.com/';
 
 
-app.use(cloudflare.restore({update_on_start:true}));
+//app.use(cloudflare.restore({update_on_start:true}));
 app.use(cookieParser());
 
 
