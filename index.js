@@ -33,6 +33,8 @@ const corsOptions = {
   origin: [
     'https://dcarrd.000webhostapp.com',
     'https://dsmc-demo1.herokuapp.com/hotpost',
+	  'https://dsmc-demo.herokuapp.com/hotpost',
+	  'https://dsmc-demo.herokuapp.com/',
     'http://localhost:3000',
   ],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
